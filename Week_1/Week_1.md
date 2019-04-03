@@ -119,3 +119,31 @@ Only booleans can be `true` or `false` but every value in Javascript is either t
 [CSS Selectors](css_selectors)
 
 <a href="wk1_html_css_lab">HTML/CSS Lab</a>
+
+
+
+## Global Scope and Global object
+
+If you are writing a Javascript program that runs in a browser and you  declare a variable outside of any function, you are declaring a variable in the *global scope*. That variable can be accessed anywhere. This is in contrast to variables that are declared within functions, which are said to be in *local scope* .
+
+The fact that global variables can be accessed anywhere means that they can easily be overwritten accidentally, resulting in chaos. For this and other reasons it is best to minimize the number of global variables you create. There is seldom any reason to create more than one.
+
+There is a *global object* and it is this object that `this` refers to in global scope. Variables that are declared in the global scope with `var` automatically become properties of the global object.
+
+```js
+// Global scope code
+var a = 100;
+a; //100
+this.a; //100
+```
+
+Functions have access to all the same variables from the same scope. When variable is not declared in small scope, it will always broaden the scope until it has found one.
+
+#### Undeclared assignment
+
+If you are not declaring a variable with `var` it will become a global variable.
+
+#### Hoisting
+
+In *both* global and local scope, declarations of variables with `var` are processed prior to the execution of all other code, including assignments. This is called *hoisting*. 
+
