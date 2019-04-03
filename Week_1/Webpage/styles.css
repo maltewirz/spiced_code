@@ -1,0 +1,89 @@
+.header {
+    border: 2px solid black;
+    height: 35px;
+    position: relative;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 0px;
+}
+
+#menu {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+}
+
+.center {
+    border: 2px solid orange;
+    position: relative;
+    text-align: center;
+}
+
+#headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#button {
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #cc6d19;
+    font-weight: bold;
+    background-color: #ffcc33;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 22px;
+    margin: 4px 2px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #cc6d19;
+}
+
+.content {
+    border: 2px solid blue;
+    height: 300px;
+    position: relative;
+}
+
+.box {
+    border: 1px solid black;
+    width: 40%;
+    height: 00px;
+    padding: 50px;
+    display: inline-block;
+    float: left;
+}
+
+.box img {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -40px;
+}
+
+.box h1 {
+    font-size: 14px;
+    float: left;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.box p {
+    font-size: 12px;
+    margin: 0;
+    float: left;
+}
