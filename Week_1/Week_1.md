@@ -68,8 +68,6 @@ typeof 99; //'number'
 
 `typeof null` returns 'object', which is widely considered to be a bug. To test whether something is `null` you can use `===`:
 
-
-
 ## Variables
 
 `var myname;` Declares variable
@@ -92,12 +90,6 @@ Only booleans can be `true` or `false` but every value in Javascript is either t
 - 0 and `NaN` are both falsey. All other numbers (including negative numbers) are truthy.
 - "" (a string with no length) is falsey. All other strings are truthy.
 - All objects, arrays, and functions are truthy.
-
-if (a) {
-    doSomething;
-}
-
-if a && doSomething;
 
 ## Random
 
