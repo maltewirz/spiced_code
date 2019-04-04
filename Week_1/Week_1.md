@@ -330,4 +330,146 @@ The last two selectors from this table are called **attribute selectors**. They 
 
 
 
-Webpage: make content relative, then inside absolute.
+# Day 4 
+
+# Objects
+
+* Curly Brackets `{}` means it is an object.
+* Inside a object is always a key and a property with a value. 
+
+```js
+var obj = {
+		// key / property w value
+    name: "ivana",
+    age: 25,
+    foods: ["one", "two"],
+    address: {
+        street: "hauptstr"
+    },
+    sayHello: function() {			//Function stored inside an object is called a method.
+        console.log("hey");
+    }
+};
+```
+
+There are two ways to access the properties of an object: dot notation (.) and bracket notation ([]), similar to an array.
+
+**Dot Notation** - does not accept variables
+
+```js
+console.log(obj.address.street);
+```
+
+**Bracket Notation** - when using variables
+
+```js
+console.log(obj["address"]);
+```
+
+##### The `in` operator
+
+When you access a property of an object that does not exist, the value that is returned is `undefined`.
+
+```js
+var obj = {};
+obj.prop; //undefined
+```
+
+Of course, a property can exist and have `undefined` as its value. To test whether a property exists on an object, you can use the `in` operator.
+
+```js
+console.log("name" in obj); //returns true if 'name' exists
+```
+
+##### The `delete `operator 
+
+```js
+delete obj.name // this deletes the "name" key
+```
+
+##### Adding keys and properties to object
+
+```js
+obj.name = "ivana"  // this adds the "name" key with property "ivana"
+```
+
+##### Iterating over values in object 
+
+```js
+for (var e in obj) {
+    console.log(e, obj[e]);					//bracket notation since variable
+}
+```
+
+
+
+# Arrays
+
+- Use `for loop` for arrays, `for in loops` for object
+- Arrays are for numerically indexed data - for non-numeric keys, use an Object.
+- Arrays are great for storing lists.
+
+```js 
+var arr0 = ["cheese", 78, [1, 2, 3], { name: "ivana" }];
+var arr = ["grapes", "fish", "tomatoes"];
+```
+
+* The index describes the position of an item in an array.
+
+#### To access the first item of the arrays:
+
+```js
+console.log(arr[0]);  // outputs grapes
+console.log(arr.length);	// outputs the arr length 3
+```
+
+#### For loop
+
+``` js
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
+```
+
+#### Push and Pop
+
+```js 
+arr.push("burek");		//pushed "burek" to the end of arr
+
+arr.pop()				// removes "burek" as it is the last items in array.
+```
+
+#### Shift and Unshift
+
+- .shift()function removes the first item from an array.
+- .unshift()works exactly like .push(), but instead of adding the element at the end of the array, unshift()adds the element at the beginning of the array.
+
+```js
+arr.shift()  //removes grapes
+arr.unshift("burek")  //adds "burek" to start of array		
+```
+
+#### Splice
+
+Splice method removes items from an array.
+
+We  use slice to make copies of an array or a segment (or piece)
+
+```js
+arr.splice(1, 2);  //starts at and removes the next 2
+```
+
+
+
+Hint:
+
+* Getting stuck at least for 30 minutes before asking teacher for help.
+* Now: Making homepage responsive.
+
+
+
+
+
+1.either take content div and text align center
+
+2. take a block element with a specific width, the margin left auto and right auto.
