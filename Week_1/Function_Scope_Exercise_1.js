@@ -7,7 +7,7 @@ function sum() {
     for (var i = 0; i < arguments.length; i++) {
         counter += arguments[i];
     }
-    console.log(counter);
+    return counter;
 }
 
 sum(5, 10);
