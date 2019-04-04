@@ -9,27 +9,3 @@ function waitthenrun(callback_fn) {
 waitthenrun(function first() {
     console.log("i'm first");
 });
-
-// function waitthenrun(callback) {
-//     setTimeout(first, 1500);
-//     function first() {
-//         console.log("i'm first");
-//     }
-// }
-//
-//
-//
-// // setTimeout(function() {
-// //     console.log('hello');
-// // }, 1000);
-//
-// function add(a, b) {
-//     console.log(a + b);
-//     return a + b;
-// }
-//
-// function waitthenrun(callback) {
-//     setTimeout(add(20, 25), 1500);
-// }
-//
-// waitthenrun();
