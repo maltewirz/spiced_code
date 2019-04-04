@@ -3,20 +3,19 @@ Write a function that expects a number as a parameter. If the value that is pass
 
 */
 
-
 function exercise3(number) {
     if (number <= 0 || isNaN(number) == true) {
-        console.log("Error");
+        return "Error";
     } else if (number >= 1000000) {
-        console.log(number);
+        return number;
     } else {
         for (var i = number; number < 1000000; i++) {
             number *= 10;
-            console.log(number);
+            return number;
         }
     }
 }
 
-exercise3(-1);
-exercise3(23789347);
-exercise3(13);
+console.log(exercise3(-1));
+console.log(exercise3(23789347));
+console.log(exercise3(13));
