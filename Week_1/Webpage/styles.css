@@ -63,23 +63,25 @@
 .box {
     border: 1px solid black;
     width: 40%;
-    height: 00px;
-    padding: 50px;
+    height: 75px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 40px;
     display: inline-block;
     float: left;
 }
 
 .box img {
     position: absolute;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: -40px;
 }
 
 .box h1 {
     font-size: 14px;
-    float: left;
     margin-right: 10px;
-    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .box p {
