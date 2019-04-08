@@ -1,0 +1,23 @@
+#container {
+    border: 5px solid black;
+    width: 600px;
+    height: 800px;
+}
+
+.box {
+    background: violet;
+    height: 300px;
+    width: 100px;
+    margin: 0 10px;
+}
+
+div {
+    display: inline-block;
+}
+
+#circle {
+    background: tomato;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
