@@ -8,7 +8,6 @@
         if (left <= -links[0].offsetWidth) {
             left = 0; //if left div far enough out: remove the first link and append it
             var first = headlines.removeChild(links[0]);
-            left += first.length;
             headlines.appendChild(first);
         }
         // console.log(left);
