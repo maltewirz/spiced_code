@@ -1,3 +1,5 @@
+// Make a page that has a <textarea> element on it. As the user types visible characters into this field, the characters should be replaced with the characters in the corresponding position in the Gettysburg Address. (Note - you can get and set the text in a <textarea> through its value property.)
+
 var textfield = document.getElementById("text");
 
 textfield.addEventListener("input", function(event) {
