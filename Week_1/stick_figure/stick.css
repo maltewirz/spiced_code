@@ -1,0 +1,64 @@
+.head {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    border-radius: 100px;
+    position: absolute;
+    left: 200px;
+    top: 100px;
+}
+
+.asideL {
+    position: absolute;
+    left: 300px;
+    top: 450px;
+    width: 380px;
+    height: 5px;
+    background-color: black;
+    transform: rotate(225deg);
+    transform-origin: left;
+}
+
+.asideR {
+    position: absolute;
+    left: 300px;
+    top: 450px;
+    width: 380px;
+    height: 5px;
+    background-color: black;
+    transform: rotate(315deg);
+    transform-origin: left;
+}
+
+.back {
+    position: absolute;
+    left: 300px;
+    top: 303px;
+    width: 250px;
+    height: 5px;
+    transform: rotate(90deg);
+    background-color: black;
+    transform-origin: left;
+}
+
+.belowL {
+    position: absolute;
+    left: 300px;
+    top: 550px;
+    width: 380px;
+    height: 5px;
+    background-color: black;
+    transform: rotate(135deg);
+    transform-origin: left;
+}
+
+.belowR {
+    position: absolute;
+    left: 300px;
+    top: 550px;
+    width: 380px;
+    height: 5px;
+    background-color: black;
+    transform: rotate(45deg);
+    transform-origin: left;
+}
