@@ -17,8 +17,12 @@
     // Write a function that expects a string representing a class name to be passed as a parameter. The function should return an array containing all the elements in the document that have the class that was passed in.
 
     function fn2(string) {
-        var temp2 = document.getElementsByClassName(string);
-        return temp2;
+        var temp2 = [];
+        var temp3 = document.getElementsByClassName(string);
+        for (var i = 0; i < temp3.length; i++) {
+            temp2.push(temp3[i]);
+        }
+        return temp3;
     }
     console.log(fn2("box"));
 
