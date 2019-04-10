@@ -5,9 +5,12 @@
 //             inner background color change randomly outer background no change.
 
 function randomColor() {
-    var colors = ["Maroon", "Red", "Orange", "Yellow", "Olive", "Green"];
-    return colors[Math.floor(Math.random() * 6)];
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
 }
+
 //Case1:
 var outer = document.getElementById("outer");
 
