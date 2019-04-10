@@ -43,13 +43,33 @@ context.moveTo(250, 300);
 context.lineTo(350, 400);
 context.stroke();
 
-// context.strokeStyle = "red";
-// context.beginPath();
-// context.moveTo(100, 100);
-// context.lineTo(200, 100);
-// context.lineTo(150, 200);
-// context.lineTo(100, 100);
-// context.stroke();
+var x = 0;
+var y = 0;
 
-// context.fillStyle = "red";
-// context.fill();
+document.addEventListener("keydown", function(arg) {
+    if (arg.key === "ArrowUp") {
+        x -= 20;
+        canvas.style.top = x + "px";
+    }
+});
+
+document.addEventListener("keydown", function(arg) {
+    if (arg.key === "ArrowDown") {
+        x += 20;
+        canvas.style.top = x + "px";
+    }
+});
+
+document.addEventListener("keydown", function(arg) {
+    if (arg.key === "ArrowLeft") {
+        y -= 20;
+        canvas.style.left = y + "px";
+    }
+});
+
+document.addEventListener("keydown", function(arg) {
+    if (arg.key === "ArrowRight") {
+        y += 20;
+        canvas.style.left = y + "px";
+    }
+});
