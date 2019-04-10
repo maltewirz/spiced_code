@@ -1,3 +1,7 @@
+// Draw a stick figure using a <canvas> element.
+// Bonus :
+// Make your stick figure move around the canvas in response to clicks on arrow keys by the user. Use two canvases: one on which the stick figure is drawn, and another, larger canvas on which the first canvas is drawn as an image.
+
 var canvas = document.getElementById("canvas");
 
 var context = canvas.getContext("2d");
