@@ -50,25 +50,13 @@ document.addEventListener("keydown", function(arg) {
     if (arg.key === "ArrowUp") {
         x -= 20;
         canvas.style.top = x + "px";
-    }
-});
-
-document.addEventListener("keydown", function(arg) {
-    if (arg.key === "ArrowDown") {
+    } else if (arg.key === "ArrowDown") {
         x += 20;
         canvas.style.top = x + "px";
-    }
-});
-
-document.addEventListener("keydown", function(arg) {
-    if (arg.key === "ArrowLeft") {
+    } else if (arg.key === "ArrowLeft") {
         y -= 20;
         canvas.style.left = y + "px";
-    }
-});
-
-document.addEventListener("keydown", function(arg) {
-    if (arg.key === "ArrowRight") {
+    } else if (arg.key === "ArrowRight") {
         y += 20;
         canvas.style.left = y + "px";
     }
