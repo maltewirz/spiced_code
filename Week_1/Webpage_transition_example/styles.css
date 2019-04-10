@@ -1,0 +1,15 @@
+#box {
+    width: 200px;
+    height: 200px;
+    background: tomato;
+    /* Step 1: Define the initial position of where the box starts. */
+    /* Reminder: Only use top when an element has position relative, absolute, fixed. */
+    position: absolute;
+    top: 0px;
+}
+
+#box.on {
+    /* Step 2: Define where i want the box to end up. */
+    top: 60%;
+    transition: top 2s;
+}
