@@ -12,9 +12,9 @@ function randomColor() {
 }
 
 box.addEventListener("mousedown", function() {
-    box.style.border = randomColor() + " solid";
+    box.style.background = randomColor();
 });
 
 box.addEventListener("mouseup", function() {
-    box.style.border = randomColor() + " solid";
+    box.style.background = randomColor();
 });
