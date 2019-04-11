@@ -3,13 +3,14 @@ body {
 }
 
 #kitties {
+    /* border: 2px solid red; */
     position: relative;
     height: 600px;
     /* overflow: hidden; */
-    border: 2px solid red;
 }
 
 .kitty {
+    border: 2px solid green;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,21 +18,20 @@ body {
     width: 100%;
     /* offscreen to the right is default state */
     transform: translateX(100%);
-    border: 2px solid green;
 }
 
 .kitty.onscreen {
+    border: 2px solid yellow;
     transform: translateX(0);
     transition-property: transform;
     transition-duration: 1s;
-    border: 2px solid yellow;
 }
 
 .kitty.exit {
+    border: 2px solid black;
     transform: translateX(-100%);
     transition-property: transform;
     transition-duration: 1s;
-    border: 2px solid black;
 }
 
 .kitty img {
