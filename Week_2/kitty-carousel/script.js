@@ -2,7 +2,10 @@
     var kitties = document.getElementsByClassName("kitty");
     var dots = document.getElementsByClassName("dot");
     var cur = 0;
+    var timer;
     var transitioning;
+
+    setTimeout(moveKitties, 2000);
 
     //click listener to dots
     for (var i = 0; i < dots.length; i++) {
@@ -16,13 +19,10 @@
                 return;
             } else {
                 console.log("ok let me switch the pic!" + e);
-                kitties[cur].classList.remove("onscreen");
-                kitties[cur].classList.add("exit");
-                kitties[e.target.id.replace("dot", "")].classList.add(
-                    "onscreen"
-                );
             }
-            // transitioning = false;
+            clearTimeout(timer);
+            moveKitties(e.target.id.replace("dot", ""));
+            transitioning = false;
         });
     }
 
@@ -33,29 +33,26 @@
         }
     });
 
-    setTimeout(moveKitties, 1000);
-
-    function moveKitties() {
-        //removes onscreen class and adds exit class of current element
+    function moveKitties(next) {
+        //removes onscreen class; adds exit class; adds dot
         kitties[cur].classList.remove("onscreen");
-        kitties[cur].classList.add("exit");
-        //removes dot
         dots[cur].classList.remove("on");
+        kitties[cur].classList.add("exit");
 
         //cur counter goes up
-        // transitioning = true;
+        transitioning = true;
         cur++;
         if (cur >= kitties.length) {
             cur = 0;
         }
+        if (typeof next != "undefined") {
+            cur = next;
+        }
+
         //Adds onscreen class to the next kitty element.
         kitties[cur].classList.add("onscreen");
         dots[cur].classList.add("on");
-        setTimeout(moveKitties, 2000);
+        transitioning = false;
+        timer = setTimeout(moveKitties, 2000);
     }
 })();
-
-//Step 1: Listen to clicks - ok
-//Step 2: Action according to click:
-// 2.1 jump to repecttive pic -ok
-// 2.2 wait for animation to finish until pic is jumped.
