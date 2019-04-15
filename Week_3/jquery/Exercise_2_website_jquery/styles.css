@@ -1,0 +1,240 @@
+.header {
+    /* border: 2px solid black; */
+    height: 35px;
+    position: relative;
+}
+
+body {
+    overflow-x: hidden;
+    border: 1px solid red;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 0px;
+}
+
+#menu {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 0px;
+}
+
+#menubox {
+    /* border: 2px solid orange; */
+    height: 100%;
+    width: 20%;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+    left: 100%;
+    top: 0;
+}
+
+#menu-overlay {
+}
+
+#menu-overlay.on {
+    background: grey;
+    transition: background 1s;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+    opacity: 0.8;
+    left: 0;
+    top: 0;
+}
+
+#menubox.on {
+    left: 80%;
+    transition: left 1s;
+}
+
+#menubox #closeMenuX {
+    text-align: right;
+    margin-right: 20px;
+}
+
+#menubox .menuText {
+    color: blue;
+}
+#menubox #logout {
+    font-size: 11px;
+    color: blue;
+}
+
+.center {
+    /* border: 2px solid orange; */
+    position: relative;
+    text-align: center;
+}
+
+#grey-overlay {
+    /* border: 2px solid red; */
+    background: grey;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.3;
+}
+
+#headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    z-index: 10;
+}
+
+#button {
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #cc6d19;
+    font-weight: bold;
+    background-color: #ffcc33;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 22px;
+    margin: 4px 2px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #cc6d19;
+    z-index: 10;
+}
+
+.content {
+    /* border: 2px solid blue; */
+    background-color: lightgrey;
+    height: 270px;
+    position: relative;
+    z-index: 10;
+}
+
+.centerdiv {
+    /* border: 2px solid yellow; */
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.box {
+    /* border: 1px solid black; */
+    width: 41.3%;
+    height: 70px;
+    padding-left: 50px;
+    padding-top: 25px;
+    float: left;
+}
+
+#picR {
+    width: 100%;
+}
+
+.box img {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -40px;
+}
+
+.box h1 {
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.box p {
+    font-size: 12px;
+    margin: 0;
+    float: left;
+}
+
+.footer {
+    background-color: grey;
+    color: white;
+    height: 10px;
+    padding: 10px;
+}
+
+#copyright {
+    margin-left: 30px;
+    font-size: 9px;
+}
+
+/* new stuff Exercise jquery */
+/* Note: reuse #grey-overlay */
+#popup-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+}
+
+.popup-content {
+    width: 400px;
+    height: 200px;
+    visibility: hidden;
+    z-index: 200000;
+}
+
+.active {
+    visibility: visible;
+    background: white;
+    border-radius: 5px;
+}
+
+#closePopupX {
+    text-align: right;
+    margin-right: 25px;
+}
+
+/* Old Stuff */
+
+@media screen and (max-width: 600px) {
+    .box p {
+        font-size: 9px;
+        width: 100%;
+    }
+    .box {
+        width: 90%;
+        height: 50px;
+    }
+
+    .content {
+        height: 378px;
+    }
+
+    .centerdiv {
+        width: 100%;
+    }
+
+    #headline {
+        font-size: 20px;
+    }
+
+    #button {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 17px;
+    }
+
+    .footer {
+        margin-top: 0px;
+    }
+}
