@@ -7,6 +7,7 @@
 
     bar.on("mousedown", function() {
         container.on("mousemove", function(e) {
+            e.preventDefault();
             $("#top").css({
                 width: e.pageX
             });
