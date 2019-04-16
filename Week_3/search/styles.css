@@ -1,0 +1,11 @@
+.search {
+}
+
+.highlighted {
+    color: blue;
+}
+
+input {
+    width: 298px;
+    border: 1px solid black;
+}

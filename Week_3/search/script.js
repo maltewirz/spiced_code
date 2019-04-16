@@ -1,24 +1,43 @@
 (function(countries) {
     var input = $("input");
+    var results = $("#results");
 
     input.on("input", function(e) {
-        //you can add another listener: input focus
-        var val = input.val(); //getter and  setter
+        var val = input.val();
         var matches = [];
         for (var i = 0; i < countries.length; i++) {
-            //alt: indexOf(val) == 0  or .startsWith(val)
             if (countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0) {
+                //adding matches to array
                 matches.push(countries[i]);
                 console.log(matches);
-                if (matches.length == 4) {
+                //limiting matches
+                if (matches.length == 5) {
                     break;
                 }
+                //converting matches to html
+                var resultsHtml = "";
+                for (var j = 0; j < matches.length; j++) {
+                    resultsHtml +=
+                        '<div class="result">' + matches[j] + "</div>";
+                }
+                //appending html
+                results
+                    .html(resultsHtml)
+                    .show()
+                    .css({
+                        borderLeft: "1px solid black",
+                        borderRight: "1px solid black",
+                        borderBottom: "1px solid black",
+                        width: 300
+                    });
             }
         }
+        //handling empty input
+        if (val == "") {
+            $(".result").remove();
+            results.html('<div class="result">' + "no results" + "</div>");
+        }
     });
-    // .on('focus', function(e) {
-    //     input.trigger('input');
-    // })
 })([
     "Afghanistan",
     "Albania",
