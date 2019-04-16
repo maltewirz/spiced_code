@@ -2,7 +2,7 @@
     var input = $("input");
     var results = $("#results");
 
-    input.on("input", function(e) {
+    input.on("input", function() {
         var val = input.val();
         var matches = [];
         for (var i = 0; i < countries.length; i++) {
@@ -88,6 +88,17 @@
             $(".result").remove();
             results.html('<div class="result">' + "no results" + "</div>");
         }
+
+        // handling input blur - deselecting
+    });
+    $("input").on("focus", function() {
+        console.log("clicked");
+        $(".result").show();
+    });
+    $("input").on("blur", function() {
+        console.log("gone");
+        $(".result").hide();
+        $("#results").removeClass("extended");
     });
 })([
     "Afghanistan",
