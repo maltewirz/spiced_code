@@ -1,6 +1,11 @@
 .search {
 }
 
+.extended {
+    width: 300px;
+    border: 1px solid black;
+}
+
 .highlighted {
     color: blue;
 }
@@ -8,4 +13,8 @@
 input {
     width: 298px;
     border: 1px solid black;
+}
+
+.active {
+    color: blue;
 }

@@ -9,7 +9,6 @@
             if (countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0) {
                 //adding matches to array
                 matches.push(countries[i]);
-                console.log(matches);
                 //limiting matches
                 if (matches.length == 5) {
                     break;
@@ -24,14 +23,66 @@
                 results
                     .html(resultsHtml)
                     .show()
-                    .css({
-                        borderLeft: "1px solid black",
-                        borderRight: "1px solid black",
-                        borderBottom: "1px solid black",
-                        width: 300
-                    });
+                    .addClass("extended");
+
+                //mouseover events selecting result - step 2
+                $(".result").on("mouseover", function(event) {
+                    $(".result").removeClass("active");
+                    $(event.target).addClass("active");
+                });
+
+                //mousedown - step 3
+                $(".result").on("mousedown", function(event) {
+                    input.val($(event.target).text());
+                    $(".result").remove();
+                    $("#results").removeClass("extended");
+                });
             }
         }
+        // handling keypresses
+        $(".search").on("keydown", function(event) {
+            if (event.keyCode === 40) {
+                var results = $(".result");
+                console.log("down pressed");
+                if (
+                    results[results.length - 1].classList.contains("active") ===
+                    true
+                ) {
+                    return;
+                }
+                for (var i = 0; i < results.length - 1; i++) {
+                    if (results[i].classList.contains("active") === true) {
+                        results.removeClass("active");
+                        results.eq(i + 1).addClass("active");
+                        console.log();
+                        break;
+                    } else {
+                        results.eq(0).addClass("active");
+                    }
+                }
+            } else if (event.keyCode === 38) {
+                console.log("up pressed");
+                var active = $(".active");
+                var resultsTwo = $(".result");
+
+                if (active.length == 0) {
+                    //add to last
+                    resultsTwo.eq(resultsTwo.length - 1).addClass("active");
+                    return;
+                }
+
+                var index = active.index();
+
+                if (index == 0) {
+                    return;
+                } else {
+                    active.removeClass("active");
+                    resultsTwo.eq(index - 1).addClass("active");
+                }
+            } else if (event.keyCode == 13) {
+                console.log("return pressed");
+            }
+        });
         //handling empty input
         if (val == "") {
             $(".result").remove();
