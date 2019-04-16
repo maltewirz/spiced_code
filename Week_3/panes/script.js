@@ -4,6 +4,7 @@
     var container = $(".container");
     var bar = $(".bar");
     var barmiddle = bar.width();
+    //to add: stopping bar at the sides.
 
     bar.on("mousedown", function() {
         container.on("mousemove", function(e) {
