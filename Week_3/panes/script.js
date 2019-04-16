@@ -3,6 +3,7 @@
 
     var container = $(".container");
     var bar = $(".bar");
+    var barmiddle = bar.width();
 
     bar.on("mousedown", function() {
         container.on("mousemove", function(e) {
@@ -10,8 +11,12 @@
                 width: e.pageX
             });
             $(".bar").css({
-                left: e.pageX
+                left: e.pageX - barmiddle
             });
         });
+    });
+
+    $(document).on("mouseup", function() {
+        container.off("mousemove");
     });
 })();
