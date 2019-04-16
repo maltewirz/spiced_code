@@ -41,8 +41,9 @@
         }
         // handling keypresses
         $(".search").on("keydown", function(event) {
+            var active = $(".active");
+            var results = $(".result");
             if (event.keyCode === 40) {
-                var results = $(".result");
                 if (
                     results[results.length - 1].classList.contains("active") ===
                     true
@@ -59,25 +60,18 @@
                     }
                 }
             } else if (event.keyCode === 38) {
-                var active = $(".active");
-                var resultsTwo = $(".result");
-
                 if (active.length == 0) {
-                    //add to last
-                    resultsTwo.eq(resultsTwo.length - 1).addClass("active");
+                    results.eq(results.length - 1).addClass("active");
                     return;
                 }
-
                 var index = active.index();
-
                 if (index == 0) {
                     return;
                 } else {
                     active.removeClass("active");
-                    resultsTwo.eq(index - 1).addClass("active");
+                    results.eq(index - 1).addClass("active");
                 }
             } else if (event.keyCode == 13) {
-                console.log("return pressed");
                 input.val($(".active").text());
                 $(".result").remove();
                 $("#results").removeClass("extended");
@@ -89,14 +83,13 @@
             results.html('<div class="result">' + "no results" + "</div>");
         }
 
-        // handling input blur - deselecting
+        // handling input blur + focus - deselecting
     });
     $("input").on("focus", function() {
-        console.log("clicked");
         $(".result").show();
+        $("#results").addClass("extended");
     });
     $("input").on("blur", function() {
-        console.log("gone");
         $(".result").hide();
         $("#results").removeClass("extended");
     });
