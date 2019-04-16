@@ -43,7 +43,6 @@
         $(".search").on("keydown", function(event) {
             if (event.keyCode === 40) {
                 var results = $(".result");
-                console.log("down pressed");
                 if (
                     results[results.length - 1].classList.contains("active") ===
                     true
@@ -51,17 +50,15 @@
                     return;
                 }
                 for (var i = 0; i < results.length - 1; i++) {
-                    if (results[i].classList.contains("active") === true) {
+                    if (results[i].classList.contains("active")) {
                         results.removeClass("active");
                         results.eq(i + 1).addClass("active");
-                        console.log();
                         break;
                     } else {
                         results.eq(0).addClass("active");
                     }
                 }
             } else if (event.keyCode === 38) {
-                console.log("up pressed");
                 var active = $(".active");
                 var resultsTwo = $(".result");
 
@@ -81,6 +78,9 @@
                 }
             } else if (event.keyCode == 13) {
                 console.log("return pressed");
+                input.val($(".active").text());
+                $(".result").remove();
+                $("#results").removeClass("extended");
             }
         });
         //handling empty input
