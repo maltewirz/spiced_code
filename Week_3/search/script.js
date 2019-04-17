@@ -2,6 +2,43 @@
     var input = $("input");
     var results = $("#results");
 
+    // handling keypresses
+    $(".search").on("keydown", function(event) {
+        var active = $(".active");
+        var results = $(".result");
+        var index = active.index();
+        if (event.keyCode === 40) {
+            //down key
+            if (active.length == 0) {
+                results.eq(0).addClass("active");
+            }
+            if (index == results.length - 1) {
+                return;
+            } else {
+                active.removeClass("active");
+                results.eq(index + 1).addClass("active");
+            }
+        }
+        if (event.keyCode === 38) {
+            // "up" key
+            if (active.length == 0) {
+                results.eq(results.length - 1).addClass("active");
+                return;
+            }
+            if (index == 0) {
+                return;
+            } else {
+                active.removeClass("active");
+                results.eq(index - 1).addClass("active");
+            }
+        } else if (event.keyCode == 13) {
+            input.val($(".active").text());
+            $(".result").remove();
+            $("#results").removeClass("extended");
+        }
+    });
+
+    // handling input events
     input.on("input", function() {
         var val = input.val();
         var matches = [];
@@ -39,44 +76,7 @@
                 });
             }
         }
-        // handling keypresses
-        $(".search").on("keydown", function(event) {
-            var active = $(".active");
-            var results = $(".result");
-            if (event.keyCode === 40) {
-                if (
-                    results[results.length - 1].classList.contains("active") ===
-                    true
-                ) {
-                    return;
-                }
-                for (var i = 0; i < results.length - 1; i++) {
-                    if (results[i].classList.contains("active")) {
-                        results.removeClass("active");
-                        results.eq(i + 1).addClass("active");
-                        break;
-                    } else {
-                        results.eq(0).addClass("active");
-                    }
-                }
-            } else if (event.keyCode === 38) {
-                if (active.length == 0) {
-                    results.eq(results.length - 1).addClass("active");
-                    return;
-                }
-                var index = active.index();
-                if (index == 0) {
-                    return;
-                } else {
-                    active.removeClass("active");
-                    results.eq(index - 1).addClass("active");
-                }
-            } else if (event.keyCode == 13) {
-                input.val($(".active").text());
-                $(".result").remove();
-                $("#results").removeClass("extended");
-            }
-        });
+
         //handling empty input
         if (val == "") {
             $(".result").remove();
