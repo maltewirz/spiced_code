@@ -8,6 +8,7 @@
         var results = $(".result");
         var index = active.index();
         if (event.keyCode === 40) {
+            event.preventDefault();
             //down key
             if (active.length == 0) {
                 results.eq(0).addClass("active");
@@ -20,6 +21,7 @@
             }
         }
         if (event.keyCode === 38) {
+            event.preventDefault();
             // "up" key
             if (active.length == 0) {
                 results.eq(results.length - 1).addClass("active");
