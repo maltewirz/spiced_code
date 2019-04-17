@@ -43,9 +43,15 @@
         var val = input.val();
         var matches = [];
         for (var i = 0; i < countries.length; i++) {
+            console.log("val " + val);
+            console.log(
+                "this is valid since " +
+                    countries[i].toLowerCase().indexOf(val.toLowerCase())
+            );
             if (countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0) {
                 //adding matches to array
                 matches.push(countries[i]);
+                console.log(matches);
                 //limiting matches
                 if (matches.length == 5) {
                     break;
@@ -61,21 +67,21 @@
                     .html(resultsHtml)
                     .show()
                     .addClass("extended");
-
-                //mouseover events selecting result - step 2
-                $(".result").on("mouseover", function(event) {
-                    $(".result").removeClass("active");
-                    $(event.target).addClass("active");
-                });
-
-                //mousedown - step 3
-                $(".result").on("mousedown", function(event) {
-                    input.val($(event.target).text());
-                    $(".result").remove();
-                    $("#results").removeClass("extended");
-                });
             }
         }
+
+        //mouseover events selecting result - step 2
+        $(".result").on("mouseover", function(event) {
+            $(".result").removeClass("active");
+            $(event.target).addClass("active");
+        });
+
+        //mousedown - step 3
+        $(".result").on("mousedown", function(event) {
+            input.val($(event.target).text());
+            $(".result").remove();
+            $("#results").removeClass("extended");
+        });
 
         //handling empty input
         if (val == "") {
