@@ -42,33 +42,36 @@
     input.on("input", function() {
         var val = input.val();
         var matches = [];
-        for (var i = 0; i < countries.length; i++) {
-            console.log("val " + val);
-            console.log(
-                "this is valid since " +
-                    countries[i].toLowerCase().indexOf(val.toLowerCase())
-            );
-            if (countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0) {
-                //adding matches to array
-                matches.push(countries[i]);
-                console.log(matches);
-                //limiting matches
-                if (matches.length == 5) {
-                    break;
+        //handling empty input
+        if (val == 0) {
+            $(".result").remove();
+            results.html('<div class="result">' + "no results" + "</div>");
+        } else {
+            for (var i = 0; i < countries.length; i++) {
+                if (
+                    countries[i].toLowerCase().indexOf(val.toLowerCase()) == 0
+                ) {
+                    //adding matches to array
+                    matches.push(countries[i]);
+                    //limiting matches
+                    if (matches.length == 4) {
+                        break;
+                    }
                 }
-                //converting matches to html
-                var resultsHtml = "";
-                for (var j = 0; j < matches.length; j++) {
-                    resultsHtml +=
-                        '<div class="result">' + matches[j] + "</div>";
-                }
-                //appending html
-                results
-                    .html(resultsHtml)
-                    .show()
-                    .addClass("extended");
             }
         }
+        //converting matches to html
+        var resultsHtml = "";
+        for (var j = 0; j < matches.length; j++) {
+            resultsHtml += '<div class="result">' + matches[j] + "</div>";
+        }
+        //appending html
+        results
+            .html(resultsHtml)
+            .show()
+            .addClass("extended");
+
+        //------------------------------------------
 
         //mouseover events selecting result - step 2
         $(".result").on("mouseover", function(event) {
@@ -82,12 +85,6 @@
             $(".result").remove();
             $("#results").removeClass("extended");
         });
-
-        //handling empty input
-        if (val == "") {
-            $(".result").remove();
-            results.html('<div class="result">' + "no results" + "</div>");
-        }
 
         // handling input blur + focus - deselecting
     });
