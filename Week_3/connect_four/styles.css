@@ -1,0 +1,31 @@
+/* The board has six rows and seven columns */
+* {
+    box-sizing: border-box;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+}
+
+.slot {
+    width: 100px;
+    width: 100px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.hole {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 500px orange;
+}
+
+.slot.player1 .hole {
+    background-color: red;
+}
+
+.slot.player2 .hole {
+    background-color: black;
+}
