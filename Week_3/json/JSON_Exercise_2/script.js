@@ -24,12 +24,11 @@
         try {
             //return number
             var result = translations[askForNumber()];
-            console.log(result);
             return result;
         } catch (e) {
             //what to do in error
             console.log("error");
-            translateNumberToGerman();
+            return translateNumberToGerman();
         }
     }
     translateNumberToGerman();
