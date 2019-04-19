@@ -28,11 +28,13 @@
         //check if already won
         if (checkforVictory(slotsInColumn)) {
             console.log("victory columns");
+            victory();
             return;
         } else {
             var slotsInRow = $(".row" + i);
             if (checkforVictory(slotsInRow)) {
                 console.log("victory rows");
+                victory();
                 return;
             } else {
                 var slots = $(".slot");
@@ -42,11 +44,17 @@
                         if (i == 3 || i == 9 || i == 15) {
                             i += 3;
                         }
-                        if (slots.eq(i).hasClass("player1")) {
-                            if (slots.eq(i + 7).hasClass("player1")) {
-                                if (slots.eq(i + 14).hasClass("player1")) {
-                                    if (slots.eq(i + 21).hasClass("player1")) {
-                                        console.log("victory DiagonalDown");
+                        if (slots.eq(i).hasClass(currentPlayer)) {
+                            if (slots.eq(i + 7).hasClass(currentPlayer)) {
+                                if (slots.eq(i + 14).hasClass(currentPlayer)) {
+                                    if (
+                                        slots.eq(i + 21).hasClass(currentPlayer)
+                                    ) {
+                                        console.log(
+                                            "victory DiagonalDown " +
+                                                currentPlayer
+                                        );
+                                        victory();
                                     }
                                 }
                             }
@@ -56,11 +64,17 @@
                         if (j == 6 || j == 12 || j == 18) {
                             j += 3;
                         }
-                        if (slots.eq(j).hasClass("player1")) {
-                            if (slots.eq(j + 5).hasClass("player1")) {
-                                if (slots.eq(j + 10).hasClass("player1")) {
-                                    if (slots.eq(j + 15).hasClass("player1")) {
-                                        console.log("victory DiagonalUp");
+                        if (slots.eq(j).hasClass(currentPlayer)) {
+                            if (slots.eq(j + 5).hasClass(currentPlayer)) {
+                                if (slots.eq(j + 10).hasClass(currentPlayer)) {
+                                    if (
+                                        slots.eq(j + 15).hasClass(currentPlayer)
+                                    ) {
+                                        console.log(
+                                            "victory DiagonalUp " +
+                                                currentPlayer
+                                        );
+                                        victory();
                                     }
                                 }
                             }
@@ -85,5 +99,14 @@
                 count = 0;
             }
         }
+    }
+
+    //victory message
+    function victory() {
+        // $("board").append("<div>" + currentPlayer + " WON </div>");
+        $(".board").append(
+            "<div class='winnerDiv'>" + currentPlayer + " WON </div>"
+        );
+        $(".winnerDiv").addClass("winner");
     }
 })();

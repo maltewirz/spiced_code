@@ -22,6 +22,17 @@
     box-shadow: 0 0 0 500px orange;
 }
 
+.winner {
+    position: absolute;
+    display: flex;
+    width: 700px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: Green;
+}
+
 .slot.player1 .hole {
     background-color: red;
 }
