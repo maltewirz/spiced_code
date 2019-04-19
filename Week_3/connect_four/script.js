@@ -103,10 +103,16 @@
 
     //victory message
     function victory() {
-        // $("board").append("<div>" + currentPlayer + " WON </div>");
         $(".board").append(
-            "<div class='winnerDiv'>" + currentPlayer + " WON </div>"
+            "<div class='winner'>" + currentPlayer + " WON </div>"
         );
-        $(".winnerDiv").addClass("winner");
     }
+
+    //column pointer
+    $(".column").on("mouseover", function(e) {
+        $(e.currentTarget).append("<div class='pointer'></div>");
+    });
+    $(".column").on("mouseout", function() {
+        $(".pointer").remove();
+    });
 })();
