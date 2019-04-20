@@ -8,6 +8,10 @@
     flex-direction: row;
 }
 
+.column {
+    margin-top: 115px;
+}
+
 .slot {
     width: 100px;
     width: 100px;
@@ -26,11 +30,12 @@
     position: absolute;
     display: flex;
     width: 700px;
-    height: 600px;
+    height: 100px;
     justify-content: center;
     align-items: center;
     font-size: 100px;
     color: Green;
+    /* background-color: orange; */
 }
 
 .slot.player1 .hole {

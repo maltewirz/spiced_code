@@ -1,11 +1,29 @@
 (function() {
     //keep track of current player
+    // setTimeout($(".ready").hide(), 2000);
+
+    setTimeout(splashScreen, 1500);
+    $(".ready").show();
+    function splashScreen() {
+        $(".ready").hide();
+    }
+
+    // console.log("ready player one");
+
     var currentPlayer = "player1";
     function switchPlayers() {
         if (currentPlayer == "player1") {
             currentPlayer = "player2";
         } else {
             currentPlayer = "player1";
+        }
+        //display playerTurn
+        setTimeout(playerTurn, 500);
+        $(".board").append(
+            "<div class='winner'>Player " + currentPlayer.slice(6) + "</div>"
+        );
+        function playerTurn() {
+            $(".winner").remove();
         }
     }
 
@@ -37,50 +55,7 @@
                 victory();
                 return;
             } else {
-                var slots = $(".slot");
                 victoryDiagonal();
-                function victoryDiagonal() {
-                    for (var i = 0; i <= 20; i++) {
-                        if (i == 3 || i == 9 || i == 15) {
-                            i += 3;
-                        }
-                        if (slots.eq(i).hasClass(currentPlayer)) {
-                            if (slots.eq(i + 7).hasClass(currentPlayer)) {
-                                if (slots.eq(i + 14).hasClass(currentPlayer)) {
-                                    if (
-                                        slots.eq(i + 21).hasClass(currentPlayer)
-                                    ) {
-                                        console.log(
-                                            "victory DiagonalDown " +
-                                                currentPlayer
-                                        );
-                                        victory();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    for (var j = 3; j <= 23; j++) {
-                        if (j == 6 || j == 12 || j == 18) {
-                            j += 3;
-                        }
-                        if (slots.eq(j).hasClass(currentPlayer)) {
-                            if (slots.eq(j + 5).hasClass(currentPlayer)) {
-                                if (slots.eq(j + 10).hasClass(currentPlayer)) {
-                                    if (
-                                        slots.eq(j + 15).hasClass(currentPlayer)
-                                    ) {
-                                        console.log(
-                                            "victory DiagonalUp " +
-                                                currentPlayer
-                                        );
-                                        victory();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
         switchPlayers();
@@ -101,10 +76,48 @@
         }
     }
 
+    function victoryDiagonal() {
+        var slots = $(".slot");
+        for (var i = 0; i <= 20; i++) {
+            if (i == 3 || i == 9 || i == 15) {
+                i += 3;
+            }
+            if (slots.eq(i).hasClass(currentPlayer)) {
+                if (slots.eq(i + 7).hasClass(currentPlayer)) {
+                    if (slots.eq(i + 14).hasClass(currentPlayer)) {
+                        if (slots.eq(i + 21).hasClass(currentPlayer)) {
+                            console.log(
+                                "victory DiagonalDown " + currentPlayer
+                            );
+                            victory();
+                        }
+                    }
+                }
+            }
+        }
+        for (var j = 3; j <= 23; j++) {
+            if (j == 6 || j == 12 || j == 18) {
+                j += 3;
+            }
+            if (slots.eq(j).hasClass(currentPlayer)) {
+                if (slots.eq(j + 5).hasClass(currentPlayer)) {
+                    if (slots.eq(j + 10).hasClass(currentPlayer)) {
+                        if (slots.eq(j + 15).hasClass(currentPlayer)) {
+                            console.log("victory DiagonalUp " + currentPlayer);
+                            victory();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //victory message
     function victory() {
         $(".board").append(
-            "<div class='winner'>" + currentPlayer + " WON </div>"
+            "<div class='winner'>Player " +
+                currentPlayer.slice(6) +
+                " WON </div>"
         );
     }
 
