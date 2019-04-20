@@ -39,17 +39,9 @@
                 //if slot without p1/2 class -> add class and break loop
                 //check if game is finished and add button
                 if (endgame == true) {
-                    console.log("wanna play again?");
-                    $(".board").append(
-                        "<button type='button' name='button' class='comeback'>Play again?</button>"
-                    );
-                    //button listener
-                    $(".comeback").on("click", function() {
-                        location.reload();
-                        startGame();
-                    });
                     return;
-                } else if (
+                }
+                if (
                     !slotsInColumn.eq(i).hasClass("player1") &&
                     !slotsInColumn.eq(i).hasClass("player2")
                 ) {
@@ -73,6 +65,7 @@
                     victoryDiagonal();
                 }
             }
+
             switchPlayers();
         });
 
@@ -131,11 +124,22 @@
 
         //victory message
         function victory() {
+            console.log("you are here BB");
             $(".board").append(
                 "<div class='winner'>Player " +
                     currentPlayer.slice(6) +
                     " WON </div>"
             );
+            //append comeback button
+            $(".board").append(
+                "<button type='button' name='button' class='comeback'>Play again?</button>"
+            );
+            //listener for comeback button
+            $(".comeback").on("click", function() {
+                location.reload();
+                startGame();
+            });
+            // return endgame true so user cannot click anymore.
             return (endgame = true);
         }
 
