@@ -1,11 +1,12 @@
 /* The board has six rows and seven columns */
 * {
     box-sizing: border-box;
+    justify-content: center;
 }
 
 .board {
     display: flex;
-    flex-direction: row;
+    position: relative;
 }
 
 .column {
@@ -35,7 +36,6 @@
     align-items: center;
     font-size: 100px;
     color: Green;
-    /* background-color: orange; */
 }
 
 .slot.player1 .hole {
@@ -53,4 +53,14 @@
     border-right: 25px solid transparent;
     border-bottom: 50px solid #555;
     margin-left: 25px;
+}
+
+.comeback {
+    /* for some reason flex does not work?! */
+    position: absolute;
+    height: 100px;
+    width: 251px;
+    top: 775px;
+    font-size: 25px;
+    background: lightgrey;
 }
