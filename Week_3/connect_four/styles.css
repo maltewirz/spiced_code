@@ -34,8 +34,8 @@
     height: 100px;
     justify-content: center;
     align-items: center;
-    font-size: 100px;
-    color: Green;
+    font-size: 80px;
+    font-family: Helvetica;
 }
 
 .slot.player1 .hole {
@@ -56,11 +56,25 @@
 }
 
 .comeback {
-    /* for some reason flex does not work?! */
     position: absolute;
     height: 100px;
     width: 251px;
     top: 775px;
     font-size: 25px;
     background: lightgrey;
+    font-family: Helvetica;
+
+    animation-name: animationA;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animationA {
+    0% {
+    }
+    50% {
+        background-color: orange;
+    }
+    100% {
+    }
 }
