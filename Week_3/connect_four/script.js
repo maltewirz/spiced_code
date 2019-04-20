@@ -39,9 +39,6 @@
                 if (endgame == true) {
                     return;
                 }
-                // else if (slotsInColumn.length > 6) {
-                //     // return;
-                // }
                 //loop from bottom to top + check if class assigned.
                 //if slot without p1/2 class -> add class and break loop
                 else if (
@@ -50,6 +47,9 @@
                 ) {
                     slotsInColumn.eq(i).addClass(currentPlayer);
                     break;
+                }
+                if (i == 0) {
+                    return;
                 }
             }
 
