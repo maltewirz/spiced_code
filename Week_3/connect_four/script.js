@@ -35,13 +35,16 @@
             // currentTarget: clicked column.   .find('.slot') select all column slots
             var slotsInColumn = $(e.currentTarget).children();
             for (var i = 5; i >= 0; i--) {
-                //loop from bottom to top + check if class assigned.
-                //if slot without p1/2 class -> add class and break loop
                 //check if game is finished and add button
                 if (endgame == true) {
                     return;
                 }
-                if (
+                // else if (slotsInColumn.length > 6) {
+                //     // return;
+                // }
+                //loop from bottom to top + check if class assigned.
+                //if slot without p1/2 class -> add class and break loop
+                else if (
                     !slotsInColumn.eq(i).hasClass("player1") &&
                     !slotsInColumn.eq(i).hasClass("player2")
                 ) {
@@ -61,8 +64,8 @@
                     console.log("victory rows");
                     victory();
                     return;
-                } else {
-                    victoryDiagonal();
+                } else if (victoryDiagonal()) {
+                    victory();
                 }
             }
 
@@ -97,7 +100,7 @@
                                 console.log(
                                     "victory DiagonalDown " + currentPlayer
                                 );
-                                victory();
+                                return true;
                             }
                         }
                     }
@@ -114,7 +117,7 @@
                                 console.log(
                                     "victory DiagonalUp " + currentPlayer
                                 );
-                                victory();
+                                return true;
                             }
                         }
                     }
@@ -124,7 +127,6 @@
 
         //victory message
         function victory() {
-            console.log("you are here BB");
             $(".board").append(
                 "<div class='winner'>Player " +
                     currentPlayer.slice(6) +
