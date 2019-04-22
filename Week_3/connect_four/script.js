@@ -1,10 +1,6 @@
 (function() {
     //start the click
     startGame();
-
-    //playground
-
-    //end of playground
     function startGame() {
         var endgame;
 
@@ -34,10 +30,6 @@
             }
         }
 
-        //player
-
-        //player
-
         //column selection: Loop backwards to find slot without p1/2 class
         $(".column").on("click", function(e) {
             // currentTarget: clicked column.   .find('.slot') select all column slots
@@ -60,13 +52,10 @@
                             "'></div>"
                     );
                     $(e.currentTarget).on("animationend", function() {
-                        slotsInColumn.eq(i).addClass(currentPlayer);
                         $(".extraPiece").remove();
-
                         $(e.currentTarget).off("animationend");
                         switchPlayers();
                     });
-
                     slotsInColumn.eq(i).addClass(currentPlayer);
                     break;
                 }
@@ -89,8 +78,6 @@
                     victory();
                 }
             }
-
-            // switchPlayers();
         });
 
         // function for victorycheck
