@@ -79,6 +79,10 @@
                 if (slots.eq(i).hasClass(currentPlayer)) {
                     count++;
                     if (count == 4) {
+                        slots.eq(i).addClass("animationA");
+                        slots.eq(i - 1).addClass("animationA");
+                        slots.eq(i - 2).addClass("animationA");
+                        slots.eq(i - 3).addClass("animationA");
                         return true;
                     }
                 } else {
@@ -100,6 +104,11 @@
                                 console.log(
                                     "victory DiagonalDown " + currentPlayer
                                 );
+
+                                slots.eq(i).addClass("animationA");
+                                slots.eq(i + 7).addClass("animationA");
+                                slots.eq(i + 14).addClass("animationA");
+                                slots.eq(i + 21).addClass("animationA");
                                 return true;
                             }
                         }
@@ -117,6 +126,10 @@
                                 console.log(
                                     "victory DiagonalUp " + currentPlayer
                                 );
+                                slots.eq(j).addClass("animationA");
+                                slots.eq(j + 5).addClass("animationA");
+                                slots.eq(j + 10).addClass("animationA");
+                                slots.eq(j + 15).addClass("animationA");
                                 return true;
                             }
                         }
