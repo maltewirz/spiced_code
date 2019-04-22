@@ -19,7 +19,6 @@
                 currentPlayer = "player1";
             }
             //display playerTurn
-            //move this inside the click function
             setTimeout(playerTurn, 500);
             $(".board").append(
                 "<div class='newPlayer winner'>Player " +
@@ -32,23 +31,21 @@
         }
 
         $(".column").on("click", function(e) {
-            // currentTarget: clicked column. .find('.slot') select all column slots
+            // currentTarget: clicked column
             var slotsInColumn = $(e.currentTarget).children();
+            //this prevents clicks during animation of extraPiece
+            if (
+                $(".column")
+                    .children()
+                    .hasClass("extraPiece")
+            ) {
+                console.log("test");
+                return;
+            }
             //column selection: Loop backwards to find slot without p1/2 class
             for (var i = 5; i >= 0; i--) {
                 //check if game is finished and add button
                 if (endgame == true) {
-                    return;
-                }
-                if (
-                    //this prevents clicks during animation of extraPiece
-                    //TODO: Move it outside the for loop
-                    $(".column")
-                        .eq(i)
-                        .children()
-                        .hasClass("extraPiece")
-                ) {
-                    console.log("test");
                     return;
                 } else if (
                     //loop from bottom to top + check if class assigned.
