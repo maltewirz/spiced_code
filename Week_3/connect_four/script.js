@@ -19,6 +19,7 @@
                 currentPlayer = "player1";
             }
             //display playerTurn
+            //move this inside the click function
             setTimeout(playerTurn, 500);
             $(".board").append(
                 "<div class='newPlayer winner'>Player " +
@@ -30,19 +31,28 @@
             }
         }
 
-        //column selection: Loop backwards to find slot without p1/2 class
         $(".column").on("click", function(e) {
-            // currentTarget: clicked column.   .find('.slot') select all column slots
-
+            // currentTarget: clicked column. .find('.slot') select all column slots
             var slotsInColumn = $(e.currentTarget).children();
+            //column selection: Loop backwards to find slot without p1/2 class
             for (var i = 5; i >= 0; i--) {
                 //check if game is finished and add button
                 if (endgame == true) {
                     return;
                 }
-                //loop from bottom to top + check if class assigned.
-                //if slot without p1/2 class -> add class and break loop
-                else if (
+                if (
+                    //this prevents clicks during animation of extraPiece
+                    //TODO: Move it outside the for loop
+                    $(".column")
+                        .eq(i)
+                        .children()
+                        .hasClass("extraPiece")
+                ) {
+                    console.log("test");
+                    return;
+                } else if (
+                    //loop from bottom to top + check if class assigned.
+                    //if slot without p1/2 class -> add class and break loop
                     !slotsInColumn.eq(i).hasClass("player1") &&
                     !slotsInColumn.eq(i).hasClass("player2")
                 ) {
@@ -54,9 +64,10 @@
                     $(e.currentTarget).on("animationend", function() {
                         $(".extraPiece").remove();
                         $(e.currentTarget).off("animationend");
+                        slotsInColumn.eq(i).addClass(currentPlayer);
+                        checkVic();
                         switchPlayers();
                     });
-                    slotsInColumn.eq(i).addClass(currentPlayer);
                     break;
                 }
                 if (i == 0) {
@@ -64,18 +75,20 @@
                 }
             }
             //check if already won
-            if (checkforVictory(slotsInColumn)) {
-                console.log("victory columns");
-                victory();
-                return;
-            } else {
-                var slotsInRow = $(".row" + i);
-                if (checkforVictory(slotsInRow)) {
-                    console.log("victory rows");
+            function checkVic() {
+                if (checkforVictory(slotsInColumn)) {
+                    console.log("victory columns");
                     victory();
                     return;
-                } else if (victoryDiagonal()) {
-                    victory();
+                } else {
+                    var slotsInRow = $(".row" + i);
+                    if (checkforVictory(slotsInRow)) {
+                        console.log("victory rows");
+                        victory();
+                        return;
+                    } else if (victoryDiagonal()) {
+                        victory();
+                    }
                 }
             }
         });
