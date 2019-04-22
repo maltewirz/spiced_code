@@ -1,6 +1,10 @@
 (function() {
     //start the click
     startGame();
+
+    //playground
+
+    //end of playground
     function startGame() {
         var endgame;
 
@@ -30,9 +34,14 @@
             }
         }
 
+        //player
+
+        //player
+
         //column selection: Loop backwards to find slot without p1/2 class
         $(".column").on("click", function(e) {
             // currentTarget: clicked column.   .find('.slot') select all column slots
+
             var slotsInColumn = $(e.currentTarget).children();
             for (var i = 5; i >= 0; i--) {
                 //check if game is finished and add button
@@ -45,6 +54,19 @@
                     !slotsInColumn.eq(i).hasClass("player1") &&
                     !slotsInColumn.eq(i).hasClass("player2")
                 ) {
+                    $(e.currentTarget).append(
+                        "<div class='extraPiece animationB " +
+                            currentPlayer +
+                            "'></div>"
+                    );
+                    $(e.currentTarget).on("animationend", function() {
+                        slotsInColumn.eq(i).addClass(currentPlayer);
+                        $(".extraPiece").remove();
+
+                        $(e.currentTarget).off("animationend");
+                        switchPlayers();
+                    });
+
                     slotsInColumn.eq(i).addClass(currentPlayer);
                     break;
                 }
@@ -52,7 +74,6 @@
                     return;
                 }
             }
-
             //check if already won
             if (checkforVictory(slotsInColumn)) {
                 console.log("victory columns");
@@ -69,7 +90,7 @@
                 }
             }
 
-            switchPlayers();
+            // switchPlayers();
         });
 
         // function for victorycheck
@@ -104,7 +125,7 @@
                                 console.log(
                                     "victory DiagonalDown " + currentPlayer
                                 );
-
+                                //animation for winning pieces
                                 slots.eq(i).addClass("animationA");
                                 slots.eq(i + 7).addClass("animationA");
                                 slots.eq(i + 14).addClass("animationA");
@@ -126,6 +147,7 @@
                                 console.log(
                                     "victory DiagonalUp " + currentPlayer
                                 );
+                                //animation for winning pieces
                                 slots.eq(j).addClass("animationA");
                                 slots.eq(j + 5).addClass("animationA");
                                 slots.eq(j + 10).addClass("animationA");
