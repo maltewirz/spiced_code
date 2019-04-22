@@ -33,7 +33,7 @@
         $(".column").on("click", function(e) {
             // currentTarget: clicked column
             var slotsInColumn = $(e.currentTarget).children();
-            //this prevents clicks during animation of extraPiece
+            //prevents clicks during animation of extraPiece
             if (
                 $(".column")
                     .children()
@@ -49,10 +49,10 @@
                     return;
                 } else if (
                     //loop from bottom to top + check if class assigned.
-                    //if slot without p1/2 class -> add class and break loop
                     !slotsInColumn.eq(i).hasClass("player1") &&
                     !slotsInColumn.eq(i).hasClass("player2")
                 ) {
+                    //if slot without p1/2 class -> add class and break loop
                     $(e.currentTarget).append(
                         "<div class='extraPiece animationB " +
                             currentPlayer +
