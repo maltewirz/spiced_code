@@ -21,13 +21,13 @@ Allow a single player to play against the computer */
     background: grey;
     position: absolute;
     z-index: -1;
-    top: 0;
+    top: 115px;
     border-radius: 50%;
 }
 
 .animationB {
     animation-name: animationB;
-    animation-duration: 0.4s;
+    animation-duration: 0.05s;
 }
 
 @keyframes animationB {
@@ -77,6 +77,22 @@ Allow a single player to play against the computer */
 
 .player2 {
     background-color: black;
+}
+.arrowP1 {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    margin-left: 25px;
+    border-bottom: 50px solid #f44336;
+}
+.playerP2 {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    margin-left: 25px;
+    border-bottom: 50px solid #555;
 }
 
 .pointer {

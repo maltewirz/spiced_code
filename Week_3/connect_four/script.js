@@ -19,7 +19,8 @@
                 currentPlayer = "player1";
             }
             //display playerTurn
-            setTimeout(playerTurn, 500);
+            setTimeout(playerTurn, 800);
+            $(".winner").remove();
             $(".board").append(
                 "<div class='newPlayer winner'>Player " +
                     currentPlayer.slice(6) +
@@ -184,5 +185,21 @@
         $(".column").on("mouseout", function() {
             $(".pointer").remove();
         });
+
+        // $(".column").on("mouseover", function(e) {
+        //     $(e.currentTarget).append("<div class='arrow'></div>");
+        //     if (currentPlayer == "player1") {
+        //         $(".arrow").addClass("arrowP1");
+        //     } else {
+        //         $(".arrow").addClass("arrowP2");
+        //     }
+        // });
+        // $(".column").on("mouseout", function() {
+        //     $(".arrowP1").remove();
+        //     $(".arrowP2").remove();
+        // });
+        // $(".pointer").addClass(currentPlayer);
+        // $(".pointer").addClass("arrowP1");
+        // $(".pointer").removeClass("pointer");
     }
 })();
