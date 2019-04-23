@@ -15,11 +15,13 @@
             // var first = headlines.removeChild(links[0]);
             // headlines.appendChild(first);
             // var first = headlines.removeChild(links.eq(0));
-            headlines.append(links.eq(0));
+            links.eq(0).remove();
+            links.eq(0).appendTo(headlines);
+            links = $("a");
         }
         // headlines.style.left = leftVar + "px";
         $("#headlines").css({
-            left: leftVar +"px"
+            left: leftVar + "px"
         });
         animId = requestAnimationFrame(moveHeadlines);
     }
@@ -42,6 +44,4 @@
     $(links).on("mouseleave", function() {
         moveHeadlines();
     });
-
-
 })();
