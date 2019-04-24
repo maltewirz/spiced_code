@@ -1,10 +1,13 @@
 (function() {
     var nextUrl;
-    var resultsHtml = "";
+    var resultsHtml;
     var coverPic;
 
     var button = $(".submit-button");
     button.on("click", function() {
+        resultsHtml = "";
+        $(".result").remove();
+        $(".search-notice").remove();
         var userInput = $("input[name='user-input']").val(); //target the name
         var dropdown = $(".artist-or-album").val();
 
@@ -19,7 +22,13 @@
             success: function(payload) {
                 //if lefthand side is defined -> && then do.
                 payload = payload.artists || payload.albums;
-
+                //Search head
+                $(".results").append(
+                    "<div class='search-notice'>Results for " +
+                        userInput +
+                        "</div>"
+                );
+                console.log(payload);
                 for (var i = 0; i < payload.items.length; i++) {
                     if (typeof payload.items[i].images[1] == "undefined") {
                         coverPic = "/logo.png";
@@ -38,9 +47,8 @@
                         '<div class="text">' +
                         payload.items[i].name +
                         "</div></a></div>";
-                    $(".results").html(resultsHtml);
                 }
-
+                $(".results").append(resultsHtml);
                 ///////-----------------------------
                 //more stuff for later
                 // nextUrl =
@@ -53,6 +61,9 @@
                 // nextUrl to make the second ajax request thorugh "more"button
                 //wrap ajax request in function for reusing. in the second ajax, not data is needed.
                 ///////-----------------------------
+            },
+            error: function() {
+                $(".results").html("<div>No results</div>");
             }
         });
     });
