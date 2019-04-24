@@ -43,33 +43,46 @@
     // handling input events
     input.on("input", function() {
         var val = input.val();
-        $.ajax({
-            url: "https://flame-egg.glitch.me/",
-            method: "GET",
-            data: {
-                q: val
-            },
-            success: function(matches) {
-                console.log(matches);
-                var resultsHtml = "";
-                // handling empty input
-                if (matches == "") {
-                    console.log("should show no result");
-                    $(".result").remove();
-                    resultsHtml += '<div class="result">No result</div>';
+        checker(val);
+        function checker(valRequest) {
+            $.ajax({
+                url: "https://flame-egg.glitch.me/",
+                method: "GET",
+                data: {
+                    q: valRequest
+                },
+                success: function(matches) {
+                    //compare valResult with inputVal, if not the same, request outdated.
+                    if (valRequest != input.val()) {
+                        return;
+                    }
+                    var resultsHtml = "";
+                    // handling empty input
+                    if (matches == "") {
+                        $(".result").remove();
+                        resultsHtml += '<div class="result">No result</div>';
+                    }
+                    // console.log(val);
+                    // testing for lag control
+                    // if val != url ->return;
+                    // check if previous result is contained in the current one
+                    // if val[1] is contained in val[2], ignore val[i]
+                    // if va2.indexOf(str1) == -1 (if not)
+                    // converting matches to html
+                    //put ajax into function, when invoke function, then you pass it the argument.
+                    for (var j = 0; j < matches.length; j++) {
+                        resultsHtml +=
+                            '<div class="result">' + matches[j] + "</div>";
+                    }
+                    //appending html
+                    results
+                        .html(resultsHtml)
+                        .show()
+                        .addClass("extended");
                 }
-                //converting matches to html
-                for (var j = 0; j < matches.length; j++) {
-                    resultsHtml +=
-                        '<div class="result">' + matches[j] + "</div>";
-                }
-                //appending html
-                results
-                    .html(resultsHtml)
-                    .show()
-                    .addClass("extended");
-            }
-        });
+            });
+        }
+
         //------------------------------------------
         //mouseover events selecting result - step 2
         $(".result").on("mouseover", function(event) {
