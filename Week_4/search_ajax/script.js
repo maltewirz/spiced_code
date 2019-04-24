@@ -1,6 +1,7 @@
 (function() {
     var input = $("input");
     var results = $("#results");
+    // var timer;
 
     // handling keypresses
     $(".search").on("keydown", function(event) {
@@ -41,19 +42,21 @@
     });
 
     // handling input events
+    // setTimeout(function() {}, 2150);
     input.on("input", function() {
         var val = input.val();
+
         checker(val);
-        function checker(valRequest) {
+        function checker(val) {
             $.ajax({
                 url: "https://flame-egg.glitch.me/",
                 method: "GET",
                 data: {
-                    q: valRequest
+                    q: val
                 },
                 success: function(matches) {
                     //compare valResult with inputVal, if not the same, request outdated.
-                    if (valRequest != input.val()) {
+                    if (val != input.val()) {
                         return;
                     }
                     var resultsHtml = "";
@@ -62,14 +65,6 @@
                         $(".result").remove();
                         resultsHtml += '<div class="result">No result</div>';
                     }
-                    // console.log(val);
-                    // testing for lag control
-                    // if val != url ->return;
-                    // check if previous result is contained in the current one
-                    // if val[1] is contained in val[2], ignore val[i]
-                    // if va2.indexOf(str1) == -1 (if not)
-                    // converting matches to html
-                    //put ajax into function, when invoke function, then you pass it the argument.
                     for (var j = 0; j < matches.length; j++) {
                         resultsHtml +=
                             '<div class="result">' + matches[j] + "</div>";
@@ -99,6 +94,7 @@
 
         // handling input blur + focus - deselecting
     });
+
     $("input").on("focus", function() {
         $(".result").show();
         $("#results").addClass("extended");
