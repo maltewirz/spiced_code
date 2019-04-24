@@ -1,0 +1,23 @@
+.search {
+}
+
+.extended {
+    width: 300px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.highlighted {
+    color: blue;
+}
+
+input {
+    width: 298px;
+    border: 1px solid black;
+}
+
+.active {
+    color: blue;
+    background-color: lightgrey;
+}
