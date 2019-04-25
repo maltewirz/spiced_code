@@ -15,14 +15,14 @@
             <div class="wrapper">
                 <img src={{photo}}>
                 <div class="text">
-                        Name: {{name}}
+                        <p>Name: {{name}}</p>
                         <p>Born: {{born}}
                         Died: {{died}} </p>
                         <h3>Selected Writings:</h3>
                         {{#selectedWritings}}
                             <li>{{this}}</li>
                         {{/selectedWritings}}
-                        <p>"{{quote}}"</p>
+                        <p id="quote">"{{quote}}"</p>
                 </div>
             </div>
             {{/authorArray}}
@@ -33,19 +33,3 @@
         <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
-
-
-
-<!-- <div class="wrapper">
-    <img src={{photo}}>
-    <div class="text">
-            Name: {{name}}
-            <p>Born: {{born}}
-            Died: {{died}} </p>
-            <h3>Selected Writings:</h3>
-            {{#selectedWritings}}
-                <li>{{this}}</li>
-            {{/selectedWritings}}
-            <p>"{{quote}}"</p>
-
-</div> -->

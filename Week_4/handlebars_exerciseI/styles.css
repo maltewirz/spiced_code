@@ -1,3 +1,6 @@
+* {
+    margin-top: 0;
+}
 .container {
     display: flex;
     flex-direction: column;
@@ -6,20 +9,22 @@
 }
 
 .wrapper {
-    border: 2px solid red;
     width: 500px;
     height: 200px;
     display: flex;
+    margin-top: 10px;
 }
 
 img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
 
 .text {
-    border: 2px solid green;
     padding: 2px;
+    margin-top: 2px;
+    margin-left: 5px;
     width: 400px;
     height: 200px;
 }
@@ -29,4 +34,12 @@ h3 {
     font-size: 16px;
     text-decoration: underline;
     font-weight: normal;
+}
+
+p {
+    margin: 2px;
+}
+
+#quote {
+    font-style: italic;
 }
