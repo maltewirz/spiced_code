@@ -56,13 +56,31 @@
         }
         function nextUrlFunction(data) {
             if (data != null) {
-                $(".results")
-                    .last()
-                    .append("<div class='more'>More</div>");
-                $(".more").on("click", function() {
-                    $(".more").remove();
-                    fetchAjaxTwo(nextUrl);
-                });
+                if (location.search.slice(1) == "scroll-infinite") {
+                    checkScroll();
+                    function checkScroll() {
+                        if (
+                            $(document).height() -
+                                100 -
+                                ($(document).scrollTop() +
+                                    $(window).height()) <=
+                            0
+                        ) {
+                            $(".more").remove();
+                            fetchAjaxTwo(nextUrl);
+                        } else {
+                            setTimeout(checkScroll, 500);
+                        }
+                    }
+                } else {
+                    $(".results")
+                        .last()
+                        .append("<div class='more'>More</div>");
+                    $(".more").on("click", function() {
+                        $(".more").remove();
+                        fetchAjaxTwo(nextUrl);
+                    });
+                }
             }
         }
     });
