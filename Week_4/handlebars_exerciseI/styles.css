@@ -1,39 +1,27 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: auto;
+}
+
+.wrapper {
     border: 2px solid red;
     width: 500px;
     height: 200px;
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
 }
 
-/* put photo and text in one div. */
-div img p () give inline block. .photo {
-    border: 2px solid black;
-    height: 200px;
+img {
     width: 200px;
-    overflow: hidden;
-}
-
-.photo img {
-    width: 100px;
-    height: 100px;
+    height: 200px;
 }
 
 .text {
-    padding: 2px;
     border: 2px solid green;
-}
-
-.properties {
-    border: 2px solid yellow;
-}
-
-.writings {
-}
-
-.quote {
-    margin-top: 2px;
-    font-style: italic;
+    padding: 2px;
+    width: 400px;
+    height: 200px;
 }
 
 h3 {
