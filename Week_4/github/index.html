@@ -18,7 +18,7 @@
 
         <div class="container"></div>
 
-        <script id="queryA" type="text/x-handlebars-template">
+        <script id="queryOne" type="text/x-handlebars-template">
 
             {{#payload}}
             <div class="results">
@@ -28,6 +28,21 @@
                 <div class="text">{{full_name}}</div>
             </div>
             {{/payload}}
+
+        </script>
+
+        <script id="queryTwo" type="text/x-handlebars-template">
+                <div class="wrapper">
+                {{#payload}}
+
+                    {{#commit}}
+                        {{#message}}
+                        <li class="new">{{this}}</li>
+                        {{/message}}
+                    {{/commit}}
+
+                {{/payload}}
+                </div>
         </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>

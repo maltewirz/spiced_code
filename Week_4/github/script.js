@@ -19,7 +19,6 @@
 
         var rootUrl = "https://api.github.com";
         var endpoint = "/users/" + userToSearch + "/repos";
-        console.log(rootUrl + endpoint);
 
         $.ajax({
             url: rootUrl + endpoint,
@@ -27,9 +26,8 @@
                 authorization: "Basic " + btoa(username + ":" + password)
             },
             success: function(payload) {
-                // console.log(payload);
                 $(".container").append(
-                    Handlebars.templates.queryA({ payload: payload })
+                    Handlebars.templates.queryOne({ payload: payload })
                 );
                 $(".results").on("click", function(e) {
                     //this selects the current target object, extracts the children with div.text and then shows the actual text content.
@@ -37,8 +35,6 @@
                         .children("div.text")
                         .text();
                     var endpointTwo = "/repos/" + commits + "/commits";
-                    console.log(endpointTwo);
-                    console.log(rootUrl + endpointTwo);
                     $.ajax({
                         url: rootUrl + endpointTwo,
                         headers: {
@@ -46,10 +42,8 @@
                                 "Basic " + btoa(username + ":" + password)
                         },
                         success: function(payload) {
-                            console.log("success");
-                            console.log(payload);
-                            $(".container").append(
-                                Handlebars.templates.queryA({
+                            $(e.currentTarget).html(
+                                Handlebars.templates.queryTwo({
                                     payload: payload
                                 })
                             );
