@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>github fun!</h1>
-        
+
         <input type="text" name="username" placeholder="username" autocomplete="off">
 
         <input type="password" name="password" placeholder="password" autocomplete="off">
@@ -15,6 +15,20 @@
         <input type="text" name="user-to-search" placeholder="user to search" autocomplete="off">
 
         <button class="submit-button">go</button>
+
+        <div class="container"></div>
+
+        <script id="queryA" type="text/x-handlebars-template">
+
+            {{#payload}}
+            <div class="results">
+                {{#owner}}
+                <img src={{avatar_url}}>
+                {{/owner}}
+            <div class="text">{{full_name}}</div>
+            </div>
+            {{/payload}}
+        </script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -1,0 +1,11 @@
+.results {
+    margin-top: 10px;
+    background: LightGrey;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
