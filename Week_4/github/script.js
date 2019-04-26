@@ -19,7 +19,7 @@
 
         var rootUrl = "https://api.github.com";
         var endpoint = "/users/" + userToSearch + "/repos";
-        // var commits = "/users/" + userToSearch + "/" + ;
+        console.log(rootUrl + endpoint);
 
         $.ajax({
             url: rootUrl + endpoint,
@@ -27,18 +27,34 @@
                 authorization: "Basic " + btoa(username + ":" + password)
             },
             success: function(payload) {
-                console.log(payload);
+                // console.log(payload);
                 $(".container").append(
                     Handlebars.templates.queryA({ payload: payload })
                 );
                 $(".results").on("click", function(e) {
-                    console.log("click");
-                    // var ex = e.currentTarget;
-                    console.log(e.currentTarget);
-                    // $('.results').eq(0).text()
-                    // $.ajax({
-                    //     url:
-                    // });
+                    //this selects the current target object, extracts the children with div.text and then shows the actual text content.
+                    var commits = $(e.currentTarget)
+                        .children("div.text")
+                        .text();
+                    var endpointTwo = "/repos/" + commits + "/commits";
+                    console.log(endpointTwo);
+                    console.log(rootUrl + endpointTwo);
+                    $.ajax({
+                        url: rootUrl + endpointTwo,
+                        headers: {
+                            authorization:
+                                "Basic " + btoa(username + ":" + password)
+                        },
+                        success: function(payload) {
+                            console.log("success");
+                            console.log(payload);
+                            $(".container").append(
+                                Handlebars.templates.queryA({
+                                    payload: payload
+                                })
+                            );
+                        }
+                    });
                 });
             }
         });
