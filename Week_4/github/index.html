@@ -21,11 +21,13 @@
         <script id="queryOne" type="text/x-handlebars-template">
 
             {{#payload}}
-            <div class="results">
-                {{#owner}}
-                <img src={{avatar_url}}>
-                {{/owner}}
-                <div class="text">{{full_name}}</div>
+            <div class="results-wrapper">
+                <div class="results">
+                    {{#owner}}
+                    <img src={{avatar_url}}>
+                    {{/owner}}
+                    <div class="text">{{full_name}}</div>
+                </div>
             </div>
             {{/payload}}
 

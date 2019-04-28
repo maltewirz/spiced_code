@@ -29,9 +29,11 @@
                 $(".container").append(
                     Handlebars.templates.queryOne({ payload: payload })
                 );
-                $(".results").on("click", function(e) {
+                $(".results-wrapper").on("click", function(e) {
+                    console.log("click");
                     //this selects the current target object, extracts the children with div.text and then shows the actual text content.
                     var commits = $(e.currentTarget)
+                        .children()
                         .children("div.text")
                         .text();
                     var endpointTwo = "/repos/" + commits + "/commits";
@@ -42,7 +44,7 @@
                                 "Basic " + btoa(username + ":" + password)
                         },
                         success: function(payload) {
-                            $(e.currentTarget).html(
+                            $(e.currentTarget).append(
                                 Handlebars.templates.queryTwo({
                                     payload: payload
                                 })
