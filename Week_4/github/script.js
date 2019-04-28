@@ -45,32 +45,36 @@
                         .text();
 
                     let commitBox = $(e.currentTarget).hasClass("ajaxAdd");
+                    let curWrap = $(e.currentTarget).find(".commits-wrapper");
 
-                    console.log(commitBox);
+                    //checks if commits are already fetched for currentTarget
+                    //else start the ajax query.
                     if (commitBox) {
-                        console.log("here");
-                        $(e.currentTarget).removeClass("on");
-                    } else {
-                        console.log("now here");
-                        $(e.currentTarget).addClass("on");
-                    }
-
-                    var endpointTwo = "/repos/" + commits + "/commits";
-                    $.ajax({
-                        url: rootUrl + endpointTwo,
-                        headers: {
-                            authorization:
-                                "Basic " + btoa(username + ":" + password)
-                        },
-                        success: function(payload) {
-                            $(e.currentTarget).addClass("ajaxAdd");
-                            $(e.currentTarget).append(
-                                Handlebars.templates.queryTwo({
-                                    payload: payload
-                                })
-                            );
+                        if (curWrap.hasClass("on")) {
+                            curWrap.removeClass("on");
+                            curWrap.hide();
+                        } else {
+                            curWrap.addClass("on");
+                            curWrap.show();
                         }
-                    });
+                    } else {
+                        var endpointTwo = "/repos/" + commits + "/commits";
+                        $.ajax({
+                            url: rootUrl + endpointTwo,
+                            headers: {
+                                authorization:
+                                    "Basic " + btoa(username + ":" + password)
+                            },
+                            success: function(payload) {
+                                $(e.currentTarget).addClass("ajaxAdd");
+                                $(e.currentTarget).append(
+                                    Handlebars.templates.queryTwo({
+                                        payload: payload
+                                    })
+                                );
+                            }
+                        });
+                    }
                 });
             }
         });
