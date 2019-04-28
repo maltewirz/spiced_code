@@ -35,7 +35,7 @@
 
         <script id="queryTwo" type="text/x-handlebars-template">
                 <div class="wrapper">
-                {{#payload}}
+                {{#each (limit payload 10)}}
 
                     {{#commit}}
                         {{#message}}
@@ -43,7 +43,7 @@
                         {{/message}}
                     {{/commit}}
 
-                {{/payload}}
+                {{/each}}
                 </div>
         </script>
 

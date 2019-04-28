@@ -12,6 +12,13 @@
     // Do not touch
     ////////////////////////////////////////////////////////////////////////////
 
+    Handlebars.registerHelper("limit", function(arr, limit) {
+        if (!Array.isArray(arr)) {
+            return [];
+        }
+        return arr.slice(0, limit);
+    });
+
     $(".submit-button").on("click", function() {
         var username = $('input[name="username"]').val();
         var password = $('input[name="password"]').val();
