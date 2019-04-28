@@ -20,12 +20,13 @@
     });
 
     $(".submit-button").on("click", function() {
-        var username = $('input[name="username"]').val();
-        var password = $('input[name="password"]').val();
-        var userToSearch = $('input[name="user-to-search"]').val();
+        $(".repo-wrapper").remove();
+        let username = $('input[name="username"]').val();
+        let password = $('input[name="password"]').val();
+        let userToSearch = $('input[name="user-to-search"]').val();
 
-        var rootUrl = "https://api.github.com";
-        var endpoint = "/users/" + userToSearch + "/repos";
+        let rootUrl = "https://api.github.com";
+        let endpoint = "/users/" + userToSearch + "/repos";
 
         $.ajax({
             url: rootUrl + endpoint,
@@ -36,13 +37,24 @@
                 $(".container").append(
                     Handlebars.templates.queryOne({ payload: payload })
                 );
-                $(".results-wrapper").on("click", function(e) {
-                    console.log("click");
+                $(".repo-wrapper").on("click", function(e) {
                     //this selects the current target object, extracts the children with div.text and then shows the actual text content.
-                    var commits = $(e.currentTarget)
+                    let commits = $(e.currentTarget)
                         .children()
                         .children("div.text")
                         .text();
+
+                    let commitBox = $(e.currentTarget).hasClass("ajaxAdd");
+
+                    console.log(commitBox);
+                    if (commitBox) {
+                        console.log("here");
+                        $(e.currentTarget).removeClass("on");
+                    } else {
+                        console.log("now here");
+                        $(e.currentTarget).addClass("on");
+                    }
+
                     var endpointTwo = "/repos/" + commits + "/commits";
                     $.ajax({
                         url: rootUrl + endpointTwo,
@@ -51,6 +63,7 @@
                                 "Basic " + btoa(username + ":" + password)
                         },
                         success: function(payload) {
+                            $(e.currentTarget).addClass("ajaxAdd");
                             $(e.currentTarget).append(
                                 Handlebars.templates.queryTwo({
                                     payload: payload

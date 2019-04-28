@@ -21,7 +21,7 @@
         <script id="queryOne" type="text/x-handlebars-template">
 
             {{#payload}}
-            <div class="results-wrapper">
+            <div class="repo-wrapper">
                 <div class="results">
                     {{#owner}}
                     <img src={{avatar_url}}>
@@ -34,7 +34,7 @@
         </script>
 
         <script id="queryTwo" type="text/x-handlebars-template">
-                <div class="wrapper">
+                <div class="commits-wrapper">
                 {{#each (limit payload 10)}}
 
                     {{#commit}}
