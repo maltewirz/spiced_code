@@ -1,14 +1,16 @@
 const events = require("events");
 
 function Countdown(num) {
-    let i;
-    if (i > 0) {
-        setTimeout(function() {
-            console.log(i);
-            i--;
-        }, 1000);
-        // Countdown.emit("secondElapsed", "awesome");
-    }
+    const tick = num => {
+        // console.log(num);
+        if (num >= 0) {
+            setTimeout(() => {
+                this.emit("secondElapsed", num);
+                tick(num - 1);
+            }, 1000);
+        }
+    };
+    tick(num);
 }
 
 Countdown.prototype = new events.EventEmitter();
