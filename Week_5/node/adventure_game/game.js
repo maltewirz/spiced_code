@@ -1,4 +1,5 @@
 const readline = require("readline");
+const chalk = require("chalk");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -6,7 +7,7 @@ const rl = readline.createInterface({
 });
 
 function ask(obj) {
-    rl.question(obj.q, function(answer) {
+    rl.question(chalk.red(obj.q), function(answer) {
         if (obj.answers[answer]) {
             // is answer an object(ask) or string(end)
             if (typeof obj.answers[answer] == "object") {
