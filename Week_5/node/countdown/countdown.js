@@ -14,4 +14,6 @@ function Countdown(num) {
 }
 
 Countdown.prototype = new events.EventEmitter();
-module.exports.Countdown = Countdown;
+Countdown.prototype.constructor = Countdown;
+
+exports.Countdown = Countdown;
