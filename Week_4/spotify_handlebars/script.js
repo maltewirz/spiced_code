@@ -19,6 +19,7 @@
         resultsHtml = "";
         $(".result").remove();
         $(".search-notice").remove();
+        $(".more").remove();
         var userInput = $("input[name='user-input']").val(); //target the name
         var dropdown = $(".artist-or-album").val();
 
