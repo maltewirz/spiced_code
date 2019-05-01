@@ -1,6 +1,6 @@
 const fs = require("fs");
 const myPath = __dirname + "/files";
-const chalk = require("chalk");
+// const chalk = require("chalk");
 
 // logSizes(myPath);
 //
@@ -30,20 +30,24 @@ const chalk = require("chalk");
 //     });
 // }
 
-mapSizes(myPath);
+fs.writeFileSync(
+    __dirname + "/outputMapSizes.json",
+    JSON.stringify(mapSizes(myPath), null, 4)
+);
+
 function mapSizes(dirStr) {
-    const myFiles = fs.readdirSync(myPath, { withFileTypes: true });
+    // console.log("dude");
+    const files = fs.readdirSync(dirStr, { withFileTypes: true });
     // console.log(myFiles);
     let obj = {};
-    for (let e in myFiles) {
-        let name = myFiles[e].name;
-        let filesize = fs.statSync(dirStr + "/" + myFiles[e].name).size;
-        obj[name] = filesize;
+    for (let i = 0; i < files.length; i++) {
+        let name = files[i].name;
+        if (files[i].isFile()) {
+            let filesize = fs.statSync(dirStr + "/" + files[i].name).size;
+            obj[name] = filesize;
+        } else if (files[i].isDirectory()) {
+            obj[name] = mapSizes(`${dirStr}/${files[i].name}/`);
+        }
     }
-    console.log(obj);
+    return obj;
 }
-
-//Sync stat
-// const myStat = fs.statSync(myFiles[0].name);
-// console.log(myStat);
-// console.log(myStat.size);
