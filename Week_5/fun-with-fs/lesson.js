@@ -53,7 +53,7 @@ fs.readFile(myPath + "/mySecretSaltFile.js", "utf8", (err, data) => {
     }
     console.log("data ", data);
 });
-////Async reading of secret file and outputting
+////Sync reading of secret file and outputting
 const myFile = fs.readFileSync(myPath + "/mySecretSaltFile.js", "utf8");
 console.log(myFile);
 

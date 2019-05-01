@@ -36,9 +36,7 @@ fs.writeFileSync(
 );
 
 function mapSizes(dirStr) {
-    // console.log("dude");
     const files = fs.readdirSync(dirStr, { withFileTypes: true });
-    // console.log(myFiles);
     let obj = {};
     for (let i = 0; i < files.length; i++) {
         let name = files[i].name;

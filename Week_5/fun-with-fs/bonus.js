@@ -8,24 +8,18 @@ function bonus(myPath) {
         if (err) {
             console.log(err);
         }
-        // console.log(files);
-
         for (let i = 0; i < files.length; i++) {
-            // console.log(files[i].name);
-            // obj[files[i].name] = "test";
-            // console.log(`${myPath}/${files[i].name}`);
             fs.stat(`${myPath}/${files[i].name}`, (err, stat) => {
                 if (err) {
                     console.log(err);
                 }
-                // console.log(stat.size);
-                // console.log(files[i].name);
+                console.log(stat.size);
                 obj[files[i].name] = stat.size;
-                console.log(obj); // this works!
-                return obj;
+                console.log(obj);
             });
         }
-        console.log(obj); // this is empty!
+        console.log(obj);
+        return obj;
     });
 }
 
