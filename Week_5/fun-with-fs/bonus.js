@@ -1,8 +1,9 @@
 //Goal: writing Part 2 with async version
+//--currently unfinished
 const fs = require("fs");
 const originalPath = __dirname + "/files";
 
-function bonus(myPath) {
+function bonus(myPath, callback) {
     let obj = {};
     fs.readdir(myPath, { withFileTypes: true }, (err, files) => {
         if (err) {
@@ -13,14 +14,15 @@ function bonus(myPath) {
                 if (err) {
                     console.log(err);
                 }
-                console.log(stat.size);
                 obj[files[i].name] = stat.size;
-                console.log(obj);
+                callback(obj);
             });
         }
-        console.log(obj);
-        return obj;
     });
 }
 
-bonus(originalPath);
+function logMyObject(obj) {
+    console.log(obj);
+}
+
+bonus(originalPath, logMyObject);

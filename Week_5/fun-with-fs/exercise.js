@@ -16,11 +16,9 @@ function logSizes(dirStr) {
                         console.log(err);
                     }
                     console.log(
-                        dirStr +
-                            "/" +
-                            files[i].name +
-                            ": " +
-                            chalk.red(stat.size)
+                        `${dirStr}/${chalk.green(files[i].name)}: ${chalk.red(
+                            stat.size
+                        )}`
                     );
                 });
             } else if (files[i].isDirectory()) {
@@ -39,12 +37,13 @@ function mapSizes(dirStr) {
     const files = fs.readdirSync(dirStr, { withFileTypes: true });
     let obj = {};
     for (let i = 0; i < files.length; i++) {
-        let name = files[i].name;
+        const name = files[i].name;
+        const nextPath = `${dirStr}/${files[i].name}`;
         if (files[i].isFile()) {
-            let filesize = fs.statSync(dirStr + "/" + files[i].name).size;
+            let filesize = fs.statSync(nextPath).size;
             obj[name] = filesize;
         } else if (files[i].isDirectory()) {
-            obj[name] = mapSizes(`${dirStr}/${files[i].name}/`);
+            obj[name] = mapSizes(`${nextPath}`);
         }
     }
     return obj;
