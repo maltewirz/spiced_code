@@ -11,14 +11,27 @@ const server = http
         });
 
         if (request.method == "GET") {
-            console.log("responding to GET");
-            console.log(headers, method, url);
-            response.setHeader("content-type", "text/html");
-            response.statusCode = 200;
-            response.write(
-                `<!doctype html><html><title>Hello World!</title><p>Hello World!</p></html>`
-            );
-            response.end();
+            if (url == "/requests.txt") {
+                console.log("url success");
+                console.log(`${myPath}/requests.txt`);
+                console.log(fs.createReadStream(`${myPath}/requests.txt`));
+
+                const readable = fs.createReadStream(`${myPath}/requests.txt`);
+                response.setHeader("content-type", "text/plain");
+                response.statusCode = 200;
+                readable.pipe(response);
+
+                // response.write(temp);
+            } else {
+                console.log("responding to GET");
+                console.log(headers, method, url);
+                response.setHeader("content-type", "text/html");
+                response.statusCode = 200;
+                response.write(
+                    `<!doctype html><html><title>Hello World!</title><p>Hello World!</p></html>`
+                );
+                response.end();
+            }
         } else if (request.method == "HEAD") {
             console.log("responding to HEAD");
             console.log(headers, method, url);
@@ -54,7 +67,8 @@ const server = http
             if (err) {
                 console.log(err);
             }
-            console.log("append success");
         });
     })
     .listen(8080);
+
+// If a `GET` request is made with `/requests.txt` as the url, serve the file. To do this, you will want to [create a read stream]from the file and then [pipe] it to the response (which is a writable stream). You should set the `Content-Type` header to `text/plain` beforehand.
