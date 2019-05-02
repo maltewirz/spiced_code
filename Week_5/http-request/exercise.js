@@ -1,9 +1,11 @@
 const http = require("http");
+const fs = require("fs");
+const myPath = __dirname;
 
 const server = http
     .createServer((request, response) => {
         const { headers, method, url } = request;
-
+        const agent = request.headers["user-agent"];
         request.on("error", err => {
             console.log(err);
         });
@@ -43,5 +45,16 @@ const server = http
             response.statusCode = 405;
             response.end();
         }
+
+        let logfile = [];
+        var currentDate = new Date("December 17, 1995 03:24:00");
+        logfile.push(currentDate, method, url, agent);
+
+        fs.appendFile(`${myPath}/requests.txt`, logfile.join("\t"), err => {
+            if (err) {
+                console.log(err);
+            }
+            console.log("append success");
+        });
     })
     .listen(8080);
