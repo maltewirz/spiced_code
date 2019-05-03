@@ -19,13 +19,14 @@ http.createServer((req, res) => {
 
     //actual file handling
     fs.stat(myPath, (err, stats) => {
+        let query = __dirname + "/projects" + req.url;
         // handling wrong file/url name
         if (typeof stats == "undefined") {
             res.statusCode = 404;
             res.end();
             return;
         }
-        let query = __dirname + "/projects" + req.url;
+        //handling all other errors
         if (err) {
             console.log(err);
             res.statusCode = 302;
@@ -37,15 +38,17 @@ http.createServer((req, res) => {
             //checks the request file extension
             const ext = path.parse(__dirname + "/projects" + req.url).ext;
             //checks ext and replaces Header appropriately
-            if (ext == ".html") {
-                res.setHeader("content-type", "text/html");
-            } else if (ext == ".css") {
-                res.setHeader("content-type", "text/css");
-            } else if (ext == ".js") {
-                res.setHeader("content-type", "text/javascript");
-            } else if (ext == ".png") {
-                res.setHeader("content-type", "image/png");
-            }
+            let types = {
+                ".html": "text/html",
+                ".css": "text/css",
+                ".js": "text/javascript",
+                ".json": "application/json",
+                ".gif": "image/gif",
+                ".jpg": "image/jpeg",
+                ".png": "image/png",
+                ".svg": "image/svg+xml"
+            };
+            res.setHeader(`content-type`, `${types[ext]}`);
         } else if (stats.isDirectory()) {
             //add a index.html if a dir request with /
             if (req.url[req.url.length - 1] == "/") {
@@ -60,10 +63,6 @@ http.createServer((req, res) => {
                 res.end();
             }
         }
-        // else {
-        //     res.statusCode = 404;
-        //     res.end();
-        // }
         //serving the file
         const readStream = fs.createReadStream(query);
         res.statusCode = 200;
