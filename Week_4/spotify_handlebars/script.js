@@ -102,7 +102,7 @@
         $(".results").append(
             Handlebars.templates.coverPic({
                 items: data.items.map(function(item) {
-                    var image = "/logo.png";
+                    var image = "./logo.png";
                     if (item.images[1]) {
                         image = item.images[1].url;
                     }
