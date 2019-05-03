@@ -1,6 +1,9 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const introPage = require("./intro.js");
+
+introPage.create();
 
 http.createServer((req, res) => {
     //making sure nothing else than "get" is allowed
@@ -50,16 +53,22 @@ http.createServer((req, res) => {
             };
             res.setHeader(`content-type`, `${types[ext]}`);
         } else if (stats.isDirectory()) {
+            console.log("requesting a dir");
             //add a index.html if a dir request with /
             if (req.url[req.url.length - 1] == "/") {
                 query += "index.html";
             }
             //if a dir but / missing
-            console.log("requesting a dir");
             if (req.url[req.url.length - 1] != "/") {
                 console.log("causing the crash");
                 res.setHeader("Location", req.url + "/");
                 res.statusCode = 302;
+                res.end();
+            }
+            if (req.url == "/") {
+                console.log(finalHtml);
+                res.statusCode = 200;
+                introPage.pipe(res);
                 res.end();
             }
         }
