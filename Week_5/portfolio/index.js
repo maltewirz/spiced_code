@@ -3,8 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const introPage = require("./intro.js");
 
-introPage.create();
-
 http.createServer((req, res) => {
     //making sure nothing else than "get" is allowed
     if (req.method != "GET") {
@@ -65,11 +63,18 @@ http.createServer((req, res) => {
                 res.statusCode = 302;
                 res.end();
             }
+            //serving the portfolio homepage "/"
             if (req.url == "/") {
-                console.log(finalHtml);
-                res.statusCode = 200;
-                introPage.pipe(res);
-                res.end();
+                introPage.create(function(err, item) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.setHeader("content-type", "text/html");
+                        res.statusCode = 200;
+                        res.write(item);
+                        res.end();
+                    }
+                });
             }
         }
         //serving the file

@@ -5,7 +5,7 @@
     var animId;
     //
     $.ajax({
-        url: "/data.json",
+        url: "./data.json",
         success: function(data) {
             var html = "";
             for (var i = 0; i < data.length; i++) {
