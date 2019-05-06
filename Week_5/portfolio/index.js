@@ -3,6 +3,19 @@ const fs = require("fs");
 const path = require("path");
 const introPage = require("./intro.js");
 
+let types = {
+    ".html": "text/html",
+    ".css": "text/css",
+    ".js": "text/javascript",
+    ".json": "application/json",
+    ".gif": "image/gif",
+    ".jpg": "image/jpeg",
+    ".png": "image/png",
+    ".svg": "image/svg+xml"
+};
+
+// const baseDir = `${__dirname}(projects)`
+
 http.createServer((req, res) => {
     //making sure nothing else than "get" is allowed
     if (req.method != "GET") {
@@ -39,18 +52,23 @@ http.createServer((req, res) => {
             //checks the request file extension
             const ext = path.parse(__dirname + "/projects" + req.url).ext;
             //checks ext and replaces Header appropriately
-            let types = {
-                ".html": "text/html",
-                ".css": "text/css",
-                ".js": "text/javascript",
-                ".json": "application/json",
-                ".gif": "image/gif",
-                ".jpg": "image/jpeg",
-                ".png": "image/png",
-                ".svg": "image/svg+xml"
-            };
+
             res.setHeader(`content-type`, `${types[ext]}`);
         } else if (stats.isDirectory()) {
+            //serving the portfolio homepage "/"
+            if (req.url == "/" && req.url.length == 1) {
+                introPage.create(function(err, item) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.setHeader("content-type", "text/html");
+                        res.statusCode = 200;
+                        res.write(item);
+                        res.end();
+                    }
+                });
+            }
+
             console.log("requesting a dir");
             //add a index.html if a dir request with /
             if (req.url[req.url.length - 1] == "/") {
@@ -62,19 +80,6 @@ http.createServer((req, res) => {
                 res.setHeader("Location", req.url + "/");
                 res.statusCode = 302;
                 res.end();
-            }
-            //serving the portfolio homepage "/"
-            if (req.url == "/") {
-                introPage.create(function(err, item) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        res.setHeader("content-type", "text/html");
-                        res.statusCode = 200;
-                        res.write(item);
-                        res.end();
-                    }
-                });
             }
         }
         //serving the file
