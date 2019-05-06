@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.result {
+    display: flex;
+    border: 1px solid grey;
+    width: 250px;
+    height: 75px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+img {
+    height: 75px;
+    width: 75px;
+    object-fit: fill;
+    margin-right: 10px;
+}
+
+.more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 50px;
+    border: 1px solid black;
+    margin-top: 5px;
+}
+
+.search-notice {
+    margin-top: 30px;
+}
+
+.input-wrap {
+    height: 40px;
+    width: 200px;
+    margin: 10px;
+    border: 1px solid grey;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 8px 8px 5px 0px rgba(0, 0, 0, 0.29);
+    /* z-index: 2; */
+}
+
+input {
+    border: none;
+    height: 30px;
+    width: 180px;
+    /* z-index: 3; */
+}
+
+.submit-button {
+    width: 80px;
+    height: 30px;
+}
+
+.artist-or-album {
+    width: 80px;
+    height: 30px;
+}
