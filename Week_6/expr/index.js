@@ -8,7 +8,7 @@ const basicAuth = require("basic-auth");
 //middleware cookieParser
 app.use(require("cookie-parser")());
 
-//checking if cookie set already
+//checking if cookie set already -- Prio 1
 app.use(function(req, res, next) {
     if (req.cookies.switch != "positive" && req.url != "/cookie") {
         console.log(req.url);
@@ -24,7 +24,21 @@ app.use(function(req, res, next) {
     }
 });
 
-//serving contents of public folder
+//code for basic-Auth -- Prio 2
+app.use("/github", function(req, res, next) {
+    var creds = basicAuth(req);
+    if (!creds || creds.name != "discoduck" || creds.pass != "opensesame") {
+        res.setHeader(
+            "WWW-Authenticate",
+            'Basic realm="Enter your credentials to see this stuff."'
+        );
+        res.sendStatus(401);
+    } else {
+        next();
+    }
+});
+
+//serving contents of public folder  -- Rest of PRIO
 app.use(express.static("./public"));
 
 //middleware bodyParser
