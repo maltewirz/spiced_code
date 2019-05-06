@@ -14,8 +14,6 @@ let types = {
     ".svg": "image/svg+xml"
 };
 
-// const baseDir = `${__dirname}(projects)`
-
 http.createServer((req, res) => {
     //making sure nothing else than "get" is allowed
     if (req.method != "GET") {
@@ -55,6 +53,7 @@ http.createServer((req, res) => {
 
             res.setHeader(`content-type`, `${types[ext]}`);
         } else if (stats.isDirectory()) {
+            console.log("requesting a dir");
             //serving the portfolio homepage "/"
             if (req.url == "/" && req.url.length == 1) {
                 introPage.create(function(err, item) {
@@ -67,16 +66,12 @@ http.createServer((req, res) => {
                         res.end();
                     }
                 });
-            }
-
-            console.log("requesting a dir");
-            //add a index.html if a dir request with /
-            if (req.url[req.url.length - 1] == "/") {
+                //add a index.html if a dir request with /
+            } else if (req.url[req.url.length - 1] == "/") {
                 query += "index.html";
             }
             //if a dir but / missing
             if (req.url[req.url.length - 1] != "/") {
-                console.log("causing the crash");
                 res.setHeader("Location", req.url + "/");
                 res.statusCode = 302;
                 res.end();
