@@ -1,12 +1,68 @@
 const express = require("express");
-// const bodyParser = require("body-parser");
-// const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const app = express();
 const introPage = require("./intro.js");
+const basicAuth = require("basic-auth");
+
+//middleware cookieParser
+app.use(require("cookie-parser")());
+
+//checking if cookie set already
+app.use(function(req, res, next) {
+    if (req.cookies.switch != "positive" && req.url != "/cookie") {
+        console.log(req.url);
+        // console.log(req.cookies.url);
+        if (!req.cookies.url) {
+            res.cookie("url", req.url);
+        }
+        res.redirect("/cookie");
+        res.end();
+        return;
+    } else {
+        next();
+    }
+});
+
+//serving contents of public folder
 app.use(express.static("./public"));
 
-app.use("/", function(req, res, next) {
-    // console.log("here");
+//middleware bodyParser
+app.use(
+    require("body-parser").urlencoded({
+        extended: false
+    })
+);
+
+// res.cookie //function
+// req.cookies //object
+
+//setting up get page
+app.get("/cookie", function(req, res) {
+    console.log("GET request");
+    res.send(`<!doctype html><title>Cookie!</title>
+            <form method="post">
+                <p>Hereby I accept the cookie:<input type="checkbox" name="accept"></p><button type="submit" name="button">submit</button>
+            </form>`);
+});
+
+app.post("/cookie", function(req, res) {
+    console.log("POST request");
+    if (req.body.accept == "on") {
+        console.log("here");
+        res.cookie("switch", "positive");
+        console.log("redirect url" + req.cookies.url);
+        res.redirect(req.cookies.url);
+        res.end();
+        return;
+    } else {
+        res.send(`<!doctype html><title>Cookie Fail!</title>
+            <p>Sorry, you have to accept the cookie to surf our page</p>`);
+    }
+});
+
+//dynamic intro page serving
+app.use("/", function(req, res) {
     introPage.create(function(err, item) {
         if (err) {
             console.log(err);
@@ -14,6 +70,7 @@ app.use("/", function(req, res, next) {
             res.setHeader("content-type", "text/html");
             res.write(item);
             res.end();
+            return;
         }
     });
 });
