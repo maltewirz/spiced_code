@@ -11,8 +11,6 @@ app.use(require("cookie-parser")());
 //checking if cookie set already -- Prio 1
 app.use(function(req, res, next) {
     if (req.cookies.switch != "positive" && req.url != "/cookie") {
-        console.log(req.url);
-        // console.log(req.cookies.url);
         if (!req.cookies.url) {
             res.cookie("url", req.url);
         }
@@ -48,12 +46,11 @@ app.use(
     })
 );
 
-// res.cookie //function
-// req.cookies //object
+// res.cookie - function
+// req.cookies  - object
 
 //setting up get page
 app.get("/cookie", function(req, res) {
-    console.log("GET request");
     res.send(`<!doctype html><title>Cookie!</title>
             <form method="post">
                 <p>Hereby I accept the cookie:<input type="checkbox" name="accept"></p><button type="submit" name="button">submit</button>
@@ -61,22 +58,19 @@ app.get("/cookie", function(req, res) {
 });
 
 app.post("/cookie", function(req, res) {
-    console.log("POST request");
     if (req.body.accept == "on") {
-        console.log("here");
-        res.cookie("switch", "positive");
-        console.log("redirect url" + req.cookies.url);
+        res.cookie("switch", "positive"); //this sets the cookie
         res.redirect(req.cookies.url);
         res.end();
         return;
     } else {
         res.send(`<!doctype html><title>Cookie Fail!</title>
-            <p>Sorry, you have to accept the cookie to surf our page</p>`);
+            <p>Sorry, you have to accept the cookie to surf our page</p> <button onclick="goBack()">Go Back</button><script>function goBack() {window.history.back();}</script>`);
     }
 });
 
 //dynamic intro page serving
-app.use("/", function(req, res) {
+app.get("/", function(req, res) {
     introPage.create(function(err, item) {
         if (err) {
             console.log(err);

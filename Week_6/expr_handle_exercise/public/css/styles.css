@@ -1,0 +1,15 @@
+.main {
+    border: 2px solid red;
+    margin: 2px;
+}
+
+.partial {
+    border: 2px solid green;
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+.partial p {
+    margin-right: 10px;
+}

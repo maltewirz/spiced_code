@@ -1,0 +1,15 @@
+.main {
+    border: solid 5px red;
+    margin: 2px;
+    padding: 2px;
+}
+
+.view {
+    border: 5px solid green;
+    margin: 2px;
+    padding: 2px;
+}
+
+.partial {
+    border: solid 5px solid blue;
+}
