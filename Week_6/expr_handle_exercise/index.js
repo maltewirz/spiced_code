@@ -13,6 +13,27 @@ let fileNames = [];
 for (let i = 0; i < files.length; i++) {
     fileNames.push(files[i].name);
 }
+//reading the description jsons and writing page
+app.get("/projects/:name/description", (req, res) => {
+    let descrData = require(`${projectsPath}/${
+        req.params.name
+    }/description.json`);
+    // console.log(descrData.name);
+    // console.log(descrData.description);
+    res.render("projectDescr", {
+        layout: "projects",
+        name: fileNames,
+        projectName: descrData.name,
+        description: descrData.description
+    });
+});
+
+app.get("/projects/", (req, res) => {
+    res.render("projectHome", {
+        layout: "projects",
+        name: fileNames
+    });
+});
 
 app.get("/", (req, res) => {
     res.render("home", {
@@ -20,10 +41,6 @@ app.get("/", (req, res) => {
         name: fileNames
     });
 });
-
-// app.get("/:name", (req, res) => {
-//     console.log(req.params.name);
-// });
 
 app.listen(8080, () => {
     console.log("I'm listening");
