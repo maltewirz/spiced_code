@@ -18,20 +18,11 @@ app.get("/projects/:name/description", (req, res) => {
     let descrData = require(`${projectsPath}/${
         req.params.name
     }/description.json`);
-    // console.log(descrData.name);
-    // console.log(descrData.description);
     res.render("projectDescr", {
-        layout: "projects",
+        layout: "main",
         name: fileNames,
         projectName: descrData.name,
         description: descrData.description
-    });
-});
-
-app.get("/projects/", (req, res) => {
-    res.render("projectHome", {
-        layout: "projects",
-        name: fileNames
     });
 });
 
