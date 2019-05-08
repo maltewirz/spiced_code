@@ -16,11 +16,34 @@ app.get("/data.json", (req, res) => {
                 if (err) {
                     res.sendStatus(500);
                 } else {
-                    console.log("we are here");
-                    throw new Error();
+                    console.log("else function");
                     for (let i = 0; i < tweets.length; i++) {
+                        console.log(tweets[i].entities.urls[0] != "undefined");
+                        console.log(typeof tweets[i].entities.urls[0]);
                         let fullTweet = tweets[i].full_text;
+                        //this produces the error
                         let urlTweet = tweets[i].entities.urls[0].url;
+                        let medUrlTweet = tweets[i].entities.media[0].url;
+
+                        let cleanTweet = fullTweet
+                            .replace(urlTweet, "")
+                            .replace(medUrlTweet, "");
+
+                        if (
+                            !cleanTweet.includes(
+                                "https://" &&
+                                    tweets[i].entities.urls[0] != "undefined"
+                            )
+                        ) {
+                            // console.log("yep");
+                            let obj = {};
+                            obj.href = urlTweet;
+                            obj.text = cleanTweet;
+                            // console.log(obj);
+                            data.push(obj);
+                            // console.log(data);
+                        }
+                        console.log("fun");
                     }
                     console.log("funky chicken");
                     res.json(data);
