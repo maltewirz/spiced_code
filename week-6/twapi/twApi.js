@@ -24,6 +24,7 @@ exports.getTweets = function(token, callback) {
                         body = JSON.parse(body);
                         callback(null, body);
                     } catch (err) {
+                        console.log(err);
                         callback(err);
                     }
                 });
@@ -34,7 +35,6 @@ exports.getTweets = function(token, callback) {
         console.log(err);
         callback(err);
     });
-    // req.write(`grant_type=client_credentials`);
     req.end();
 };
 
@@ -42,7 +42,6 @@ exports.getToken = function(callback) {
     const encoded = Buffer.from(`${consumerKey}:${consumerSecret}`).toString(
         "base64"
     );
-    // console.log(auth);
     const req = https.request(
         {
             host: "api.twitter.com",
