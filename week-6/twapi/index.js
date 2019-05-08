@@ -11,12 +11,19 @@ app.get("/data.json", (req, res) => {
             // console.log("yep error token");
             res.sendStatus(500);
         } else {
-            console.log("i am the token   " + token);
             twApi.getTweets(token, function(err, tweets) {
+                const data = [];
                 if (err) {
                     res.sendStatus(500);
                 } else {
-                    res.json(tweets);
+                    console.log("we are here");
+                    throw new Error();
+                    for (let i = 0; i < tweets.length; i++) {
+                        let fullTweet = tweets[i].full_text;
+                        let urlTweet = tweets[i].entities.urls[0].url;
+                    }
+                    console.log("funky chicken");
+                    res.json(data);
                 }
             });
         }
