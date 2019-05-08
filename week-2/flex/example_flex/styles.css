@@ -1,0 +1,62 @@
+nav {
+    display: flex;
+    /* fles start is the default value of justify-content, which means left  */
+    /* for right orientation: use flex end */
+    /* justify means align the main axis */
+    justify-content: flex-end;
+
+    /* flex-start - default
+    flex-end - moves to end
+    space-around: each element same space around it
+    space-between: space between elements
+    space evenly: each element gets the same space before it, and its equal to the space between elements. */
+
+    /* CSS properties  that start with the word "align"
+    will align items along the cross axis */
+}
+
+.nav-link {
+    font-size: 32px;
+    font-family: "Helvetiva";
+    font-weight: 300;
+    letter-spacing: 2px;
+    /* shorthand for margin-left: 2% and margin right 2% */
+    margin: 0 2%;
+}
+
+img {
+    height: 183px;
+    width: 275px;
+}
+
+.card {
+    width: 400px;
+    height: 250px;
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    /* vertical axis is the main axis
+    horiznotal axis the cross axis */
+    justify-content: space-around;
+    align-items: center;
+}
+
+#card-one {
+    flex-grow: 1;
+}
+
+#card-two {
+    flex-grow: 2;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border: 2px solid red;
+    height: 2000px;
+    /* CSS propertiers that apply to the  CrOSS axis start with the word align */
+    align-items: flex-start;
+}
+
+/* flexbox relies on whitespace.  you need whitespce in order for it to work. */

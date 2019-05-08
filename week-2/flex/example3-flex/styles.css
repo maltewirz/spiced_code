@@ -1,0 +1,24 @@
+/* Copy the HTML document you created and add to the <main> element a single <img> tag with its src attribute set to https://bubble-medicine.glitch.me/gif?tag=kitty. This url uses the Giphy API to get a random gif so it will not be possible to know the width and height of the image that will be displayed in advance. Make the <main> element a flex container and have the <img> element appear centered vertically and horizontally. */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    border: 1px solid black;
+}
+
+header {
+    background: orange;
+    height: 70px;
+}
+
+footer {
+    background: pink;
+    height: 30px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}

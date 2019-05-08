@@ -1,0 +1,9 @@
+#canvasBig {
+    border: 1px solid red;
+    position: relative;
+}
+
+#canvas {
+    border: 1px solid black;
+    position: absolute;
+}

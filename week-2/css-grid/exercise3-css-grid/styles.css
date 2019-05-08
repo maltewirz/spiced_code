@@ -1,0 +1,50 @@
+body {
+    border: 1px solid red;
+}
+
+.box {
+    border: 1px solid green;
+    display: inline-grid;
+    /* vertical align is needed because its trying to take the baseline of the contents, (small boxes) */
+    vertical-align: top;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    width: 100px;
+    height: 100px;
+}
+
+.box.one {
+    background: grey;
+}
+
+.one {
+    grid-column-start: 2;
+    background: orange;
+}
+
+.box.two {
+    background: black;
+}
+
+.two {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    background: yellow;
+}
+
+.box.three {
+    background: blue;
+}
+
+.three {
+    grid-row-start: 2;
+    background: green;
+}
+
+.box.four {
+    background: violet;
+}
+
+.four {
+    background: pink;
+}

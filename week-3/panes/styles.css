@@ -1,0 +1,34 @@
+.container {
+    border: 2px solid red;
+    width: 600px;
+    height: 400px;
+    position: relative;
+}
+
+#top {
+    position: absolute;
+    z-index: 1;
+    width: 50%;
+    overflow: hidden;
+}
+
+#bottom {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+
+img {
+    width: 600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.bar {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    left: 50%;
+    height: 100%;
+    width: 15px;
+}
