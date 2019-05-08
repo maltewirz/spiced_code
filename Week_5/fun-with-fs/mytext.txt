@@ -1,1 +1,0 @@
-Let's write our first file salt.
