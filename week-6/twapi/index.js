@@ -33,4 +33,12 @@ app.get("/data.json", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/ticker");
+});
+
+app.use(function(req, res) {
+    res.status(404).send("That's a 404");
+});
+
 app.listen(8080, () => console.log(`I'm listening`));
