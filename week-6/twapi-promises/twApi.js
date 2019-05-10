@@ -6,7 +6,7 @@ exports.getTweets = function(token, screenName) {
         const req = https.request(
             {
                 host: "api.twitter.com",
-                path: `/1.1/statuses/user_timeline.json?count=5&screen_name=${screenName}&tweet_mode=extended&limit=1`,
+                path: `/1.1/statuses/user_timeline.json?count=2&screen_name=${screenName}&tweet_mode=extended&limit=1`,
                 method: "GET",
                 headers: {
                     "content-type":

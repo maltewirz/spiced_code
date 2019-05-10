@@ -1,9 +1,6 @@
 const express = require("express");
 const app = express();
 const twApi = require("./twApi");
-// const util = require("util");
-// const getTwitToken = util.promisify(twApi.getToken);
-// const getTwitTweets = util.promisify(twApi.getTweets);
 const getTwitToken = twApi.getToken;
 const getTwitTweets = twApi.getTweets;
 
@@ -28,12 +25,17 @@ app.get("/data.json", (req, res) => {
                 .filter(item => {
                     return item.entities.urls.length == 1;
                 })
+                .sort((a, b) => {
+                    return new Date(a.created_at) - new Date(b.created_at);
+                })
                 .map(item => {
                     return {
-                        text: item.full_text.replace(
-                            /(?:https?|ftp):\/\/[\n\S]+/g,
-                            ""
-                        ),
+                        text:
+                            `${item.user.name}: ` +
+                            item.full_text.replace(
+                                /(?:https?|ftp):\/\/[\n\S]+/g,
+                                ""
+                            ),
                         href: item.entities.urls[0].url
                     };
                 });
@@ -53,4 +55,4 @@ app.use(function(req, res) {
     res.status(404).send("That's a 404");
 });
 
-app.listen(8080, () => console.log(`I'm listening twapi promises`));
+app.listen(8080, () => console.log(`I'm listening - twapi promises`));
