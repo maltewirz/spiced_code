@@ -1,5 +1,4 @@
 const myPath = __dirname + "/files";
-const chalk = require("chalk");
 const { readdir, stat } = require("fs").promises;
 
 logSizes(myPath).then(() => {
@@ -15,11 +14,7 @@ function logSizes(dirStr) {
                 if (files[i].isFile()) {
                     arr.push(
                         stat(path).then(stat => {
-                            console.log(
-                                `${dirStr}/${chalk.green(
-                                    files[i].name
-                                )}: ${chalk.red(stat.size)}`
-                            );
+                            console.log(`${path}: ${stat.size}`);
                         })
                     );
                 } else if (files[i].isDirectory()) {
