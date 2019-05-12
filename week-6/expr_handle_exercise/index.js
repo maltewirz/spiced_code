@@ -9,20 +9,24 @@ app.use(express.static("./public"));
 
 //reading the file names in Sync
 let files = fs.readdirSync(projectsPath, { withFileTypes: true });
-let fileNames = [];
-for (let i = 0; i < files.length; i++) {
-    fileNames.push(files[i].name);
-}
 
 //reading the description jsons and writing page
 app.get("/projects/:name/description", (req, res) => {
     let descrData = require(`${projectsPath}/${
         req.params.name
     }/description.json`);
-    console.log(fileNames);
+
+    for (var e in files) {
+        if (files[e].name == req.params.name) {
+            files[e].current = true;
+        } else {
+            files[e].current = false;
+        }
+    }
+    console.log(files);
     res.render("projectDescr", {
         layout: "main",
-        name: fileNames,
+        files: files,
         projectName: descrData.name,
         description: descrData.description
     });
@@ -32,7 +36,7 @@ app.get("/projects/:name/description", (req, res) => {
 app.get("/", (req, res) => {
     res.render("home", {
         layout: "main",
-        name: fileNames
+        files: files
     });
 });
 

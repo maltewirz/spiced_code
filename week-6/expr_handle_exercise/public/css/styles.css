@@ -24,3 +24,7 @@ img {
     width: 200px;
     border: 1px solid blue;
 }
+
+.current {
+    background: #7fff00;
+}
