@@ -7,7 +7,7 @@ app.engine("handlebars", hb());
 app.set("view engine", "handlebars");
 app.use(express.static("./public"));
 
-//reading the file names in Sync
+//reading files
 let files = fs.readdirSync(projectsPath, { withFileTypes: true });
 
 //reading the description jsons and writing page
@@ -16,11 +16,10 @@ app.get("/projects/:name/description", (req, res) => {
         req.params.name
     }/description.json`);
 
+    let files = fs.readdirSync(projectsPath, { withFileTypes: true });
     for (var e in files) {
         if (files[e].name == req.params.name) {
             files[e].current = true;
-        } else {
-            files[e].current = false;
         }
     }
     console.log(files);
