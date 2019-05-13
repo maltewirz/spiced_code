@@ -23,6 +23,7 @@ app.get("/projects/:name/description", (req, res) => {
         }
     }
     console.log(files);
+    console.log(descrData.name);
     res.render("projectDescr", {
         layout: "main",
         files: files,
