@@ -1,3 +1,3 @@
 # Welcome to my exercise repo
 
-Here you will find all my exercises for Spiced.
+Here you will find all my exercises.
