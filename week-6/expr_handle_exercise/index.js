@@ -23,12 +23,22 @@ app.get("/projects/:name/description", (req, res) => {
         }
     }
     console.log(files);
-    console.log(descrData.name);
+    // console.log(descrData);
+    // console.log(descrData.name);
+    console.log(descrData);
     res.render("projectDescr", {
         layout: "main",
         files: files,
         projectName: descrData.name,
-        description: descrData.description
+        description: descrData.description,
+        descrData: descrData,
+        helpers: {
+            checkName: function(a, b) {
+                console.log(a);
+                console.log(b);
+                return a === b;
+            }
+        }
     });
 });
 

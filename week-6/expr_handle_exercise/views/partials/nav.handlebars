@@ -1,14 +1,20 @@
+
 <div class="partial">
     <a href="/">Home</a>
 
+
+
     {{#files}}
+    {{name}}
         {{#if current}}
-            <a href="/projects/{{ name }}/description"><p class="current">  {{name}} </p></a>
+            <a href="/projects/{{ name }}/description"><p class="current">  {{../projectName}} </p></a>
         {{ else }}
             <a href="/projects/{{ name }}/description"><p>  {{name}} </p></a>
         {{/if}}
     {{/files}}
 </div>
 
-<!-- how can i add projectName? -->
-<!-- text transform capitalize. -->
+
+<!-- 1. How can i console log the outcomes?
+2. Is it true that cannot use projectName inside the #files?
+3. How is `this` used inside the function? I observed it being redundant.  -->

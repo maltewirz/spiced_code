@@ -49,14 +49,12 @@ img {
     justify-content: center;
     align-items: center;
     box-shadow: 8px 8px 5px 0px rgba(0, 0, 0, 0.29);
-    /* z-index: 2; */
 }
 
 input {
     border: none;
     height: 30px;
     width: 180px;
-    /* z-index: 3; */
 }
 
 .submit-button {
